@@ -1,5 +1,5 @@
 % Arquivo LaTeX de exemplo de monografia para a disciplina MAC0499
-% 
+%
 % Adaptado em julho/2015 a partir do
 %
 % ---------------------------------------------------------------------------- %
@@ -15,10 +15,10 @@
 
 
 % ---------------------------------------------------------------------------- %
-% Pacotes 
+% Pacotes
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
-\usepackage[latin1]{inputenc}
 \usepackage[pdftex]{graphicx}           % usamos arquivos pdf/png como figuras
 \usepackage{setspace}                   % espaçamento flexível
 \usepackage{indentfirst}                % indentação do primeiro parágrafo
@@ -51,7 +51,7 @@
 
 % ---------------------------------------------------------------------------- %
 \graphicspath{{./figuras/}}             % caminho das figuras (recomendável)
-\frenchspacing                          % arruma o espaço: id est (i.e.) e exempli gratia (e.g.) 
+\frenchspacing                          % arruma o espaço: id est (i.e.) e exempli gratia (e.g.)
 \urlstyle{same}                         % URL com o mesmo estilo do texto e não mono-spaced
 \makeindex                              % para o índice remissivo
 \raggedbottom                           % para não permitir espaços extra no texto
@@ -92,7 +92,7 @@ framexrightmargin=10pt
 % Corpo do texto
 \begin{document}
 
-\frontmatter 
+\frontmatter
 % cabeçalho para as páginas das seções anteriores ao capítulo 1 (frontmatter)
 \fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
 \setcounter{tocdepth}{2}
@@ -114,13 +114,13 @@ framexrightmargin=10pt
 
     \vspace*{3cm}
     \Large{Nome completo do Autor}
-    
+
 
     \vspace{3cm}
     \textbf{\Large{Título da monografia \\
     se for longo ocupa esta linha também}}
-    
-       
+
+
     \vskip 5cm
     \normalsize{São Paulo}
 
@@ -162,11 +162,11 @@ framexrightmargin=10pt
 
 
 
-\pagenumbering{roman}     % começamos a numerar 
+\pagenumbering{roman}     % começamos a numerar
 
 %% % ---------------------------------------------------------------------------- %
 %% % Agradecimentos:
-%% % Se o candidato não quer fazer agradecimentos, deve simplesmente eliminar esta página 
+%% % Se o candidato não quer fazer agradecimentos, deve simplesmente eliminar esta página
 %% \chapter*{Agradecimentos}
 %% Texto texto texto texto texto texto texto texto texto texto texto texto texto
 %% texto texto texto texto texto texto texto texto texto texto texto texto texto
@@ -225,8 +225,8 @@ língua portuguesa.
 
 %% % ---------------------------------------------------------------------------- %
 %% % Listas de figuras e tabelas criadas automaticamente
-%% \listoffigures            
-%% \listoftables            
+%% \listoffigures
+%% \listoftables
 
 
 
@@ -268,6 +268,6 @@ língua portuguesa.
 %% \index{DFT|see{transformada discreta de Fourier}}
 %% \index{Fourier!transformada|see{transformada de Fourier}}
 
-%% \printindex   % imprime o índice remissivo no documento 
+%% \printindex   % imprime o índice remissivo no documento
 
 \end{document}
