@@ -2,6 +2,26 @@
 \chapter{Introdução}
 \label{cap:introducao}
 
+Aumento de performance em cálculos de transferência radioativa ao redor de
+buracos negros usando unidades de processamento gráfico de propósito geral
+(GPGPU).
+GRmonty (nome reduzido, em inglês, de Monte Carlo para Relatividade Geral) é um programa de computador que simula as caractéristicas ao redor de um buraco negro afim de calcular a transferência radioativa,
+
+
+Existe o programa grmonty ( https://github.com/rsnemmen/grmonty Dolence et al. 2009 ApJ),
+o qual calcula a propagação de fótons nas proximidades de um buraco negro,
+utilizando-se de um alto custo de processamento. Apesar desse programa estar
+escrito em C e utilizando bibliotecas de computação em alta performance
+(HPC sigla em inglês) como OpenMP ainda há muito espaço para melhorias em sua
+performance. Este trabalho mira ser uma dessas melhorias.
+
+A estrutura de funcionamento do grmonty por ser descrita como um único cálculo
+aplicado a uma grande quantidade de dados, no qual cada calculo é independente
+dos demais. Dada esta descrição é possível usar um modelo de computação, única
+instrução múltiplos dados (SIMD), com um hardware especializado a fim de
+aumentar a performance do calculo como um todo. O emprego desta técnica neste
+programa específico é o tema deste TCC.
+
 Uma monografia deve ter um capítulo inicial que é a Introdução e um
 capítulo final que é a Conclusão. Entre esses dois capítulos poderá
 ter uma sequência de capítulos que descrevem o trabalho em detalhes.
@@ -14,7 +34,7 @@ Para a escrita de textos em Ciência da Computação, o livro de Justin Zobel,
 O livro \emph{Metodologia de Pesquisa para Ciência da Computação} de
 \citet{waz:09} também merece uma boa lida.
 
-O uso desnecessário de termos em lingua estrangeira deve ser evitado. No entanto,
+O uso desnecessário de termos em língua estrangeira deve ser evitado. No entanto,
 quando isso for necessário, os termos devem aparecer \emph{em itálico}.
 
 \begin{small}

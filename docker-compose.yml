@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  latex:
+    build: .
+    command: make
+    image: tianon/latex
+    working_dir: /tcc
+    volumes:
+      - .:/tcc
