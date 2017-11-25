@@ -1,7 +1,11 @@
-BASE_NAME = monografia_template
-SOURCES_FILES = chapters/introducao.tex chapters/grmonty.tex chapters/gpgpu.tex \
-	chapters/otimizacao.tex chapters/resultados.tex chapters/futuro.tex \
-	chapters/conclusoes.tex
+BASE_NAME = astro_HCP
+SOURCES_FILES = chapters/introducao.tex \
+                chapters/grmonty.tex \
+                chapters/gpgpu.tex \
+                chapters/otimizacao.tex \
+                chapters/resultados.tex \
+                chapters/futuro.tex \
+                chapters/conclusoes.tex
 
 LATEX     = latex
 PDFLATEX  = pdflatex
