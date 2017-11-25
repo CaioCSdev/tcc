@@ -1,18 +1,22 @@
 \chapter{Otimizacao}
 \label{cap:otimizacao}
 
-mostrar gráfico de processamento do grmonty
+\section{Arquitetura}
+  mostrar gráfico de processamento do grmonty
+  apontar o track super photon como candidato a ser produzido no kernel
 
-apontar o track super photon como candidato a ser produzido no kernel
+\section{Melhorias e Modificações}
+  \subsection{Somente uma dimensão}
+    matrix pra vetor
 
-\section{mudanças feitas}
+  \subsection{OpenMP e Concorrência}
+    desligar o openmp
 
-matrix pra vetor
+  \subsection{math.h}
+    unix math pra nvida math
 
-desligar o openmp
+  \subsection{divisão e trabalho e parelelização}
+    calculo de diviasão de trabalho na GPU
 
-unix math pra nvida math
-
-calculo de diviasão de trabalho na GPU
-
-de ``assim que possível'' ``para processamento em lotes''
+  \subsection{Processar em Lotes}
+    de ``assim que possível'' ``para processamento em lotes''

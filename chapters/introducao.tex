@@ -2,15 +2,15 @@
 \chapter{Introdução}
 \label{cap:introducao}
 
-apresentar o que e o grmonty, motivacoes para aumentar a sua performance.
+apresentar o que e o grmonty, motivações para aumentar a sua performance.
 
-mas como aumentar a velocidade? dada a arquitetura de funcionamneto do programa uma otima estrategia eh mover parte de seu funcionanmento para um GPU, pois o programa pode sr visto como uma SIMD
+mas como aumentar a velocidade? dada a arquitetura de funcionamento do programa uma ótima estrategia eh mover parte de seu funcionamento para um GPU, pois o programa pode sr visto como uma SIMD
 
-Uma grande dúvida dos astrofísicos e também de toda a comunidade ciêntifica é o que ocorre em um buraco negro e em suas proximidades. Na busca de respostas programas de computador são feitos com o intuito de simular essa região e talvez trazer alguma luz, um desses programas é o \emph{GrMonty}.
+Uma grande dúvida dos astrofísicos e também de toda a comunidade científica é o que ocorre em um buraco negro e em suas proximidades. Na busca de respostas programas de computador são feitos com o intuito de simular essa região e talvez trazer alguma luz, um desses programas é o \emph{GrMonty}.
 
 Programas dessa natureza tendem a ser muito intensos no que diz respeito ao processamento, exigindo muito das CPUs estas tornam-se assim um limitante, um gargalo, para a velocidade com a qual o programa pode devolver um resultado. É neste contexto que buscamos aplicar métodos de \emph{Computação de Alta Performance} para otimizar ao máximo o uso todos os dispositivos do computador (hardware) que temos disponíveis.
 
-Muitas das técnicas de HPC exploram a paralelização, o que pode ser feito massivamente por um hardware expecífico as \emph{unidades de processamento gráfico}, GPU. Tais dispositivos são confeccionados primordialmente para processamento gráfico em jogos digitais, porém graças a avanços recentes tais dispositivos tem se tornado mais genéricos
+Muitas das técnicas de HPC exploram a paralelização, o que pode ser feito massivamente por um hardware específico as \emph{unidades de processamento gráfico}, GPU. Tais dispositivos são confeccionados primordialmente para processamento gráfico em jogos digitais, porém graças a avanços recentes tais dispositivos tem se tornado mais genéricos
 
 Ao analisar o funcionamento do \emph{GrMonty}, por sua característica de simulador de partículas, é possível classificar parte de sua execução no modelo SIMD. Dada essa informação podemos explorar
 
@@ -18,7 +18,7 @@ Ao analisar o funcionamento do \emph{GrMonty}, por sua característica de simula
 Aumento de performance em cálculos de transferência radioativa ao redor de
 buracos negros usando unidades de processamento gráfico de propósito geral
 (GPGPU).
-GRmonty (nome reduzido, em inglês, de Monte Carlo para Relatividade Geral) é um programa de computador que simula as caractéristicas ao redor de um buraco negro afim de calcular a transferência radioativa,
+GRmonty (nome reduzido, em inglês, de Monte Carlo para Relatividade Geral) é um programa de computador que simula as características ao redor de um buraco negro afim de calcular a transferência radioativa,
 
 
 Existe o programa grmonty \citep{Dolence:09},
