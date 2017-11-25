@@ -2,13 +2,26 @@
 \chapter{Introdução}
 \label{cap:introducao}
 
+apresentar o que e o grmonty, motivacoes para aumentar a sua performance.
+
+mas como aumentar a velocidade? dada a arquitetura de funcionamneto do programa uma otima estrategia eh mover parte de seu funcionanmento para um GPU, pois o programa pode sr visto como uma SIMD
+
+Uma grande dúvida dos astrofísicos e também de toda a comunidade ciêntifica é o que ocorre em um buraco negro e em suas proximidades. Na busca de respostas programas de computador são feitos com o intuito de simular essa região e talvez trazer alguma luz, um desses programas é o \emph{GrMonty}.
+
+Programas dessa natureza tendem a ser muito intensos no que diz respeito ao processamento, exigindo muito das CPUs estas tornam-se assim um limitante, um gargalo, para a velocidade com a qual o programa pode devolver um resultado. É neste contexto que buscamos aplicar métodos de \emph{Computação de Alta Performance} para otimizar ao máximo o uso todos os dispositivos do computador (hardware) que temos disponíveis.
+
+Muitas das técnicas de HPC exploram a paralelização, o que pode ser feito massivamente por um hardware expecífico as \emph{unidades de processamento gráfico}, GPU. Tais dispositivos são confeccionados primordialmente para processamento gráfico em jogos digitais, porém graças a avanços recentes tais dispositivos tem se tornado mais genéricos
+
+Ao analisar o funcionamento do \emph{GrMonty}, por sua característica de simulador de partículas, é possível classificar parte de sua execução no modelo SIMD. Dada essa informação podemos explorar
+
+
 Aumento de performance em cálculos de transferência radioativa ao redor de
 buracos negros usando unidades de processamento gráfico de propósito geral
 (GPGPU).
 GRmonty (nome reduzido, em inglês, de Monte Carlo para Relatividade Geral) é um programa de computador que simula as caractéristicas ao redor de um buraco negro afim de calcular a transferência radioativa,
 
 
-Existe o programa grmonty ( https://github.com/rsnemmen/grmonty Dolence et al. 2009 ApJ),
+Existe o programa grmonty \citep{Dolence:09},
 o qual calcula a propagação de fótons nas proximidades de um buraco negro,
 utilizando-se de um alto custo de processamento. Apesar desse programa estar
 escrito em C e utilizando bibliotecas de computação em alta performance
@@ -27,34 +40,3 @@ capítulo final que é a Conclusão. Entre esses dois capítulos poderá
 ter uma sequência de capítulos que descrevem o trabalho em detalhes.
 Após o capítulo de conclusão, poderá ter apêndices e ao final deverá
 ter as referências bibliográficas.
-
-
-Para a escrita de textos em Ciência da Computação, o livro de Justin Zobel,
-\emph{Writing for Computer Science} \citep{zobel:04} é uma leitura obrigatória.
-O livro \emph{Metodologia de Pesquisa para Ciência da Computação} de
-\citet{waz:09} também merece uma boa lida.
-
-O uso desnecessário de termos em língua estrangeira deve ser evitado. No entanto,
-quando isso for necessário, os termos devem aparecer \emph{em itálico}.
-
-\begin{small}
-\begin{verbatim}
-Modos de citação:
-indesejável: [AF83] introduziu o algoritmo ótimo.
-indesejável: (Andrew e Foster, 1983) introduziram o algoritmo ótimo.
-certo : Andrew e Foster introduziram o algoritmo ótimo [AF83].
-certo : Andrew e Foster introduziram o algoritmo ótimo (Andrew e Foster, 1983).
-certo : Andrew e Foster (1983) introduziram o algoritmo ótimo.
-\end{verbatim}
-\end{small}
-
-Uma prática recomendável na escrita de textos é descrever as legendas das
-figuras e tabelas em forma auto-contida: as legendas devem ser razoavelmente
-completas, de modo que o leitor possa entender a figura sem ler o texto onde a
-figura ou tabela é citada.
-
-Apresentar os resultados de forma simples, clara e completa é uma tarefa que
-requer inspiração. Nesse sentido, o livro de \citet{tufte01:visualDisplay},
-\emph{The Visual Display of Quantitative Information}, serve de ajuda na
-criação de figuras que permitam entender e interpretar dados/resultados de forma
-eficiente.

@@ -5,6 +5,9 @@
 #
 
 BASE_NAME = monografia_template
+SOURCES_FILES = cap-introducao.tex cap-grmonty.tex cap-gpgpu.tex \
+	cap-otimizacao.tex cap-resultados.tex cap-futuro.tex cap-conclusoes.tex
+
 
 LATEX     = latex
 PDFLATEX  = pdflatex
@@ -14,7 +17,7 @@ MAKEINDEX = makeindex
 pdf: $(BASE_NAME).pdf
 ps: $(BASE_NAME).ps
 
-$(BASE_NAME).pdf: $(BASE_NAME).tex cap-resumo.tex
+$(BASE_NAME).pdf: $(BASE_NAME).tex $(SOURCES_FILES)
 	$(PDFLATEX) $<
 	$(BIBTEX) $(BASE_NAME)
 	$(MAKEINDEX) $(BASE_NAME)
