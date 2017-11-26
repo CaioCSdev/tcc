@@ -1,11 +1,27 @@
-\chapter{Grmonty: Monte carlo para relatividade geral}
+\chapter{Grmonty: Monte Carlo para Relatividade Geral}
 \label{cap:grmonty}
 
 \section{O que Faz}
+  Dolence et al definem o \textbf{grmonty} como ``software destinado a calcular o espectro de plasmas quentes e opticamente finos a par da completa relatividade geral utilizando um código de transporte radioativo baseado na técnica de Monte Carlo''\citep[p.1, traduzido]{Dolence:09}.
+
   explicar o que faz física e matemáticamente
   talvez falar da tecnica de monte carlo
 \section{Para que Faz}
+  Qualquer fonte astrofísica de radiação que seja relativistica, ou seja, qualquer corpo ou fenômeno fonte de radiação eletromagnética, seja do rádio à raios gama e que é relativistica: apresenta uma considerável distorção no espaço-tempo, seja por estar em velocidades próximas a da luz, seja por possuir uma enorme quantidade de massa e/ou energia. Exemplos de objetos são os buracos negros e estrelas de neutrons, fenômenos são os \textit{Gamma Ray Bursts} ou núcleos ativos de galáxias.
+
   casos de uso, onde é usado e como
 
 \section{Como Faz}
+  O software utiliza o método de Monte Carlo na geração dos dados, fótons, a partir de um dado modelo de plasma fornecido como entrada. Desta forma produz um número aleatório de fótons os quais paralelamente tem seus caminhos traçados, determinados, pelas diferentes possíveis interações que podem vir a ter. Depois de algumas iterações um número de fótons já foi gerado e rastreado, se este número é aproximadamente igual um valor dado na entrada do programa a execução termina, retornando o espectro gerado.
+
+  No momento de rastreio dos fótons o programa faz o uso da biblioteca \textbf{OpenMP} para paralelizar o desenvolvimento dos fótons, graças a esta abordagem é viável o potêncial uso de todos os núcleos disponíveis na CPU da máquina. Assim o código demonstra que apresenta um mesmo conjunto de execuções para uma grande variedade de dados, logo sendo enquadrado como SIMD.
+
+  Assim que um fóton é gerado seu percurso é traçado. O que é evidente ao se observar as linhas tal e tal
+
+  código código código código código código código código código código código
+  código código código código código código código código código código código
+  código código código código código código código código código código código
+
+  Fica claro também que o processamento do rastreio é feito assim que possível, ao oposto de um processamento em lotes - um número n de fótons é produzido e agrupado para somente aí esse agrupamento ser processado.
+
   descrever funcionamento computacional, MPI, SIMD, citar assim que possível oposto de lazy ou batch, C
