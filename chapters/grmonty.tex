@@ -2,25 +2,26 @@
 \label{cap:grmonty}
 
 \section{O que Faz}
-  Dolence et al definem o \textbf{grmonty} como ``software destinado a calcular o espectro de plasmas quentes e opticamente finos a par da completa relatividade geral utilizando um código de transporte radioativo baseado na técnica de Monte Carlo''\citep[p.1, traduzido]{Dolence:09}. Em outras palavras o programa estima o espectro de uma simulação de magnetoidrodinâmica relativistica utilizando o método de Monte Carlo para aproximar o espectro.
+  Dolence et al definem o \textbf{grmonty} como ``software destinado a calcular o espectro de plasmas quentes e opticamente finos a par da completa relatividade geral utilizando um código de transporte radioativo baseado na técnica de Monte Carlo''\citep[p.1, traduzido]{Dolence:09}. Em outras palavras o programa estima o espectro de uma simulação de magnetoidrodinâmica relativistica utilizando o método de Monte Carlo.
 
-  Utilizando o método de Monte Carlo na geração dos dados, os fótons, e a partir de um dado modelo de plasma fornecido como entrada, o programa busca gerar o espectro de radiação. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada fóton sua tragetória é traçada. Nessa trajetória o fóton é espalhado e passa por diferentes interações, podendo ser absorvido, refletido, difratado ou até re-emitido ao percorrer seu percurso e finalmente ser medido.
+  Utilizando o método de Monte Carlo na geração dos dados, os fótons, e a partir de um dado modelo de plasma fornecido como entrada, o programa busca gerar o espectro de radiação. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada fóton sua tragetória é traçada. Nessa trajetória o fóton é espalhado e passa por diferentes interações, podendo ser absorvido, refletido, difratado ou até re-emitido ao percorrer seu percurso e finalmente ser mensurado.
 
-  Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, assim um relatório com o espectograma obtido é gerado e retornado pelo programa que finalmente termina.
+  Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, assim um relatório com o espectograma é obtido e retornado pelo programa que finalmente termina.
 
 \section{Para que Faz}
-  Qualquer fonte astrofísica de radiação que seja relativistica, ou seja, qualquer corpo ou fenômeno fonte de radiação eletromagnética, seja do rádio à raios gama e que é relativistica: apresenta uma considerável distorção no espaço-tempo, seja por estar em velocidades próximas a da luz, seja por possuir uma enorme quantidade de massa e/ou energia. Exemplos de objetos são os buracos negros e estrelas de neutrons, fenômenos são os \textit{Gamma Ray Bursts} ou núcleos ativos de galáxias.
+  Foram desenvolvidas várias técnicas para calcular a transferência radioativa a partir de fontes como as descritas a baixo\citep{Dolence:09}, porém poucas levam em conta a relatividade geral como um todo, pricipalmente no quesíto de objetos, fontes, muito massivas ou com velocidades próxima a da luz, o \textbf{grmonty} vem para aprimorar esses cálculos.
 
-  Foram desenvolvidas várias técnicas para calcular a transferência radioativa a partir de fontes como as descritas a cima\citep{Dolence:09}, porém poucas levam em conta a relatividade geral como um todo, pricipalmente no quesíto de objetos, fontes, muito massivas ou com velocidades próxima a da luz, o \textbf{grmonty} vem para aprimorar esses cálculos.
+  Qualquer fonte astrofísica de radiação que seja relativística, ou seja, qualquer corpo ou fenômeno fonte de radiação eletromagnética, seja do rádio à raios gama e que é relativistica: apresenta uma considerável distorção no espaço-tempo, seja por estar em velocidades próximas a da luz, seja por possuir uma enorme quantidade de massa e/ou energia. Exemplos de objetos são os buracos negros e estrelas de neutrons, fenômenos são os \textit{Gamma Ray Bursts} ou núcleos ativos de galáxias.
+
 
 \section{Como Faz}
 
   No momento de criação e rastreio dos fótons o programa faz o uso da biblioteca \textbf{OpenMP} para paralelizar o desenvolvimento dos fótons, graças a esta abordagem é viável o potêncial uso de todos os núcleos disponíveis na CPU da máquina. A bilioteca é utilizada para que cada fóton seja produzido e espalhado de forma independente dos outros e funcionando em paralelo, além disso todas as intruções não dependem do fóton em sí, elas são as mesmas intruções para todos os fótons. Desta forma podemos caracterizar o \textbf{grmonty} como tendo uma computação SIMD.
 
-  ``Única Instrução Multiplos Dados: Nesse tipo de computação podem haver multiplos processadors, cada um operando sobre seu item de dados, mas estão todos executando a mesma instrução naquele item de dados''\citep[p.84, traduzido]{HCP:16}
+  ``Única Instrução Multiplos Dados: Nesse tipo de computação podem haver múltiplos processadores, cada um operando sobre seu item de dados, mas estão todos executando a mesma instrução naquele item de dados''\citep[p.84, traduzido]{HCP:16}. A arquitetura SIMD trabalha em resonância com o \textbf{OpenMP} uma vez que torna a parelização muito simples de ser aplicada: não há variáveis compartilhadas, não há condicionais ou desvios de fluxo que tornem cada execução diferente uma da outra, não há necessidade de sincronização ou \textit{mutex}. Tornar o programa paralelizável é simples já que requer um uso mínimo do ferramental de programação concorrente.
 
 
-  Assim que um fóton é gerado seu percurso é traçado. O que é evidente ao se observar as linhas 106 a 137 do \textit{grmonty.cu}, aqui copiadas:
+  Toda a vez que um fóton é criado logo em seguida sua rota é traçada, a relação entre criação e cálculo de trajetória é de 1 para 1. O que é evidente ao se observar as linhas 106 a 137 do \textit{grmonty.cu}, aqui copiadas:
 
   \begin{lstlisting}
     #pragma omp parallel private(ph)
@@ -46,6 +47,8 @@
   	}
   \end{lstlisting}
 
-  Fica claro também - ao observar a linha 8 a 14 - que o processamento do rastreio é feito assim que possível, ao oposto de um processamento em lotes, ou seja, assim que o comandado \textit{make\_super\_photon} é executado gerando um novo fóton \textit{ph}, o  \textit{track\_super\_photon} é chamado, não havendo algum buffer ou lote, um fóton produzido é um fóton consumido.
+  Fica claro também - ao observar a linha 8 a 14 - que o processamento do rastreio é feito assim que possível, ao oposto de um processamento em lotes, ou seja, assim que o comandado \textit{make\_super\_photon} é executado, gerando um novo fóton \textit{ph}, o  \textit{track\_super\_photon} é chamado, não havendo algum buffer ou lote, um fóton produzido é um fóton consumido.
 
-  % descrever funcionamento computacional, MPI, SIMD, citar assim que possível oposto de lazy ou batch, C
+  Tal processamento reduz muito os vestígios que um fóton pode criar durante sua existência. Uma vez que não se perde tempo deixando-o na memória, assim que é mensurado seu espaço na memória já é ocupado pelo próximo fóton a ser produzido, há um foco na economia de memória. O número de fótons na memória é o número de threads rodando simultaneamente.
+
+  Por fim se faz necessário notar que o programa é escrito na linguagem de programação C. O que faz muito sentido do ponto de vista de performance, uma vez que C é uma linguagem de baixo nível, mais próxima a linguagem de máquina e por isso é quase sempre explícito a quantidade e de que forma se está manipulando a memória. Outras vantagens são as possíbilidades de usar tanto a biblioteca \textbf{OpenMP} como as otimizações do \textbf{gcc}, o \textit{Gnu C Compiler}, mas do ponto de vista da expressividade uma linguagem de mais alto nível poderia apresentar outras vantagens, como uma maior legibilidade do código e o uso de abstrações e encapsulamento, aumentando também a capacidade e a facilidade de fazer manutenções e melhorias no código.
