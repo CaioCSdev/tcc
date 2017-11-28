@@ -63,8 +63,8 @@
 % Opções de listing usados para o código fonte
 % Ref: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
 \lstset{ %
-language=Java,                  % choose the language of the code
-basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+language=C,                     % choose the language of the code
+basicstyle={\small\ttfamily},       % the size of the fonts that are used for the code
 numbers=left,                   % where to put the line-numbers
 numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
 stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
@@ -85,7 +85,9 @@ extendedchars=true,
 xleftmargin=10pt,
 xrightmargin=10pt,
 framexleftmargin=10pt,
-framexrightmargin=10pt
+framexrightmargin=10pt,
+commentstyle=\color[rgb]{0,0.6,0},
+keywordstyle=\color{blue}
 }
 
 % ---------------------------------------------------------------------------- %
