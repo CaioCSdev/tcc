@@ -1,0 +1,61 @@
+24/01:
+
+Total
+Words in text: 1647
+Words in headers: 75
+Words outside text (captions, etc.): 4
+Number of headers: 27
+Number of floats/tables/figures: 1
+Number of math inlines: 0
+Number of math displayed: 0
+Files: 8
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  41+1+0 (1/0/0/0) File(s) total: chapters/conclusoes.tex
+  24+23+0 (6/0/0/0) File(s) total: chapters/futuro.tex
+  16+10+4 (3/1/0/0) File(s) total: chapters/gpgpu.tex
+  822+14+0 (4/0/0/0) File(s) total: chapters/grmonty.tex
+  346+1+0 (1/0/0/0) File(s) total: chapters/introducao.tex
+  345+1+0 (1/0/0/0) File(s) total: chapters/introducao.tex.bak
+  44+20+0 (8/0/0/0) File(s) total: chapters/otimizacao.tex
+  9+5+0 (3/0/0/0) File(s) total: chapters/resultados.tex
+
+25/01
+Total
+Words in text: 1302
+Words in headers: 74
+Words outside text (captions, etc.): 4
+Number of headers: 26
+Number of floats/tables/figures: 1
+Number of math inlines: 0
+Number of math displayed: 0
+Files: 7
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  41+1+0 (1/0/0/0) File(s) total: chapters/conclusoes.tex
+  24+23+0 (6/0/0/0) File(s) total: chapters/futuro.tex
+  16+10+4 (3/1/0/0) File(s) total: chapters/gpgpu.tex
+  822+14+0 (4/0/0/0) File(s) total: chapters/grmonty.tex
+  346+1+0 (1/0/0/0) File(s) total: chapters/introducao.tex
+  44+20+0 (8/0/0/0) File(s) total: chapters/otimizacao.tex
+  9+5+0 (3/0/0/0) File(s) total: chapters/resultados.tex
+
+Total
+Words in text: 1371
+Words in headers: 74
+Words outside text (captions, etc.): 4
+Number of headers: 26
+Number of floats/tables/figures: 1
+Number of math inlines: 0
+Number of math displayed: 0
+Files: 7
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  41+1+0 (1/0/0/0) File(s) total: chapters/conclusoes.tex
+  24+23+0 (6/0/0/0) File(s) total: chapters/futuro.tex
+  16+10+4 (3/1/0/0) File(s) total: chapters/gpgpu.tex
+  822+14+0 (4/0/0/0) File(s) total: chapters/grmonty.tex
+  415+1+0 (1/0/0/0) File(s) total: chapters/introducao.tex
+  44+20+0 (8/0/0/0) File(s) total: chapters/otimizacao.tex
+  9+5+0 (3/0/0/0) File(s) total: chapters/resultados.tex
+
