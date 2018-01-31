@@ -1,14 +1,65 @@
 \chapter{GPGPU}
 \label{cap:gpgpu}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=.80\textwidth]{comparacao_GPU_CPU.png}
-  \caption{Imagem comparando de forma simplifica a arquitetura dos processadores. Do lado esquerdo a arquitetura de uma Unidade de Processamento Central, muito espaço para o cache e a unidade de comtrole. Do lado direto uma unidade de processamento Gráfica, como uma grande região segmentada dedicada a computação aritimética e lógica}
-  \label{fig:cpuvsgpu}
-\end{figure}
+A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu processador, a GPU. Depois é descrita a motivação para a qual esse hardware foi criado, o por quê ainda é produzido e por que provavelmente continuará. Seguindo são apontadas as diferenças arquiteturais entre uma CPU e uma GPU, vantagens e desvatagens. Na continuação são apresentadas e demonstradas as duas principais linguagens que permitem o acesso a programação genérica na GPGPU a OpenCL e a CUDA, contendo o por quê neste projeto foi escolhido a linguagem CUDA. Por fim são apresentadas aplicações que se utilizam do estado da arte no hardware e software das placas gráficas mais atuais e avançadas.
 
-\section{História das GPU e GPGPU}
+\section{Placas de vídeo}
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[width=.80\textwidth]{NVIDIA-GTX-1070-FoundersEdition-FL.jpg}
+    \caption{Placa grafica NVIDIA GTX 1070 para computadores de mesa "desktop", essa versão é a "Founders edition", possui cerca de 8 GBs de memória com uma banda de 256 GB/s , 1920 núcleos, frequência de funcionamento de 1506 MHz e consome 150W. (Fonte: Wikimedia Commons \protect\footnotemark)}
+    \label{fig:gtx1070}
+  \end{figure}
+
+  \footnotetext{Disponível em \url{https://commons.wikimedia.org/wiki/File:NVIDIA-GTX-1070-FoundersEdition-FL.jpg} Domínio público}
+
+  Placa de vídeo é uma peça que pode ou não estar presente em um computador, ela é responsável por fornecer o hardware especializado em renderização gráfica, projetado para prover um grande aumento de performance a um baixo custo se comparado a CPUs no que disrespeito a tranformação de dados em memoria em imagens e vídeos, prontos para serem apresentados em telas e monitores. São constituídas principalmente de:
+  \begin{itemize}
+    \item Um chip de memória, cuja a principal função é armazenar texturas, ou qualquer outro dado que deverá ser várias vezes utilizado, consultado, no processo de renderização.
+    \item Portas de acesso e conexão a monitores e telas, variam entre VGA (Video Graphics Array), DVI (Digital Visual Interface) e HDMI (High-Definition Muiltimidia Interface). São a saída mais comum às computações das placas.
+    \item Um processador, uma GPGPU composta de alguns milhares de núcleos
+    \item Uma ou várias ventoinhas, para dissipar o calor produzido pelo processador
+  \end{itemize}
+
+  A figura \ref{fig:gtx1070} é uma foto de uma placa gráfica da Nvidia, a NVIDIA GTX 1070, começou a ser comercializada em Junho de 2016 à um preço de 379 dólares e possuí 1920 núcleos de processamento à 1,506 GHz em sua GPU \citep{gtx1070:16}. Nessa mesma época também é comercializada o \textit{Intel® Core™ i7-6850K Processor} CPU da Intel, vendida na época a partir de 617 dólares, possui 6 núcleos à uma frequência de 3,6 GHz \citep{inteli7:16}. Um cálculo simples de tiques por segundo, ou seja, quantidade de ciclos que podem ser executados por segundo para cada processador demonstra que, enquanto a CPU da intel é capaz de realizar 21,6 bilhões de ciclos, no total, por segundo a GPGPU da nvidia é capaz de 2891,52 bilhões de ciclos, no total, por segundo, uma diferença de aproximadamente 133,8 vezes. A GPU que é 60,42\% do valor da CPU é mais de 100 vezes mais rápida.
+
+  GPGPU é uma acrônimo para \textit{General Purpose Graphics Processing Unit} em tradução literal: Unidade de processamento Gráfico de Propósito Geral. É uma evolução, uma adaptação que as GPUs passaram, na qual sua cadeia de processamento gráfico foi flexibilizada tornado possível usá-la para propósitos mais gerais, indo muito além do escopo de produção de gráficos e imagens em três dimensões, porém suas origens e modo de operação advem da sua função original de processar uma cadeia de dados gráficos, e tal necessidade determinou qual seria o objetivo da arquitetura que tais processadores deveriam ter. Assim entender essa cadeia de processamento ou \textit{pipeline} dos dados das placas gráficas é importante para entender o por quê são como são \citep{massively:16}.
+
+  O objetivo das GPUs é gerar imagens e vídeos que representam visões de uma cena virtual. A visão desta cena é descrita pela posição de uma câmera virtual e é definida pela geometria, orientação e propriedades materiais da superfície dos objetos na cena representados, bem como das propiedades das fontes de luz. APIs gráficas como OpenGL \citep{opengl}, DirectX \citep{directx} ou Vulkan\citep{vulkan} representam este processo como um pipeline que executa uma série de operações sobre um conjunto de vértices enviados pela CPU, sendo que cada vértice possui algumas propriedades, tais como cor, posição e vetor normal \citep{closer-look:08}.
+
+  O vertex shader é um programa que executa um conjunto de operações para cada um dos vertíces de entrada, com o intuíto de projetar cada vértice, baseado em sua posição relativa à camera virtual, em um espaço de tela 2D. Destes vértices, é montado um conjunto de triângulos, que representam os objetos no espaço 2D. Assim, quanto maior a quantidade de triângulos, melhor a qualidade com que o objeto será representado \citep{closer-look:08}. Visto que cada cena  possui milhares de vértices e cada um deles pode ser tratado independentemente, os vértices podem ser processados paralelamente \citep{gpu-comp:08}.
+
+  A seguir, ocorre o processo de rasterização, que consiste em determinar quais
+  espaços da tela são cobertos por cada triângulo. Esse processo resulta na geração de fragmentos para cada espaço de tela coberto. Um fragmento pode ser considerado um "proto-pixel", que contem todas as informações necessárias para gerar um pixel na imagem final (profundidade, localização no frame buffer, etc.). A partir da posição da câmera virtual, os fragmentos que são ocultos por outros fragmentos são descartados \citep{gpu-comp:08}.
+
+  Já o pixel shader opera sobre a saída gerada pelo processo de rasterização. O pixel shader é um programa que consiste em um conjunto de operações que são executadas sobre cada fragmento, antes que estes sejam plotados na tela. Utilizando as informações de cor dos vértices e, possivelmente, buscando dados adicionais na memória global em forma de texturas (imagens que são mapeadas sobre as superfícies dos objetos), cada fragmento é processado para obter-se a cor final do pixel. Assim como na etapa de processamento de vértices, os fragmentos são independentes e podem ser processados em paralelo. Esta etapa é a que tipicamente demanda maior processamento dentro da estrutura do pipeline gráfico \citep{gpu-comp:08}.
+
+  Uma vez que os programas de shader necessitam ser aplicados em milhares de
+  vértices e pixels independentemente, as GPUs evoluíram para um conjunto de multiprocessadores massivamente paralelos. Além disso, dependendo do balanceamento da carga de trabalho da aplicação, apesar dos pixels serem dependentes dos vértices, ambos podem ser executados paralelamente. Esta característica resultou no aumento da programabilidade dos multiprocessadores da GPU \citep{massively:16}.
+
+
+
+  responsavel pela renderização de todas a s imagens, ligado diretamente com o monitor
+  nucleo das placas mais atuais
+  termo existe desde
+  intel graphycs
+
+
+
+\section{A História das GPU e GPGPU}
+  As GPUs, a princípio, não foram criadas para cálculos numéricos ou simulações de particulas e sim para a rederização de imagens para jogos digitais \citep{Hague:13}, o alto custo na produção e aquisição de hardware mais potente na década de 70 impulsionou a criação de processadores mais dedicados e com funções mais específicas para a rederização gráfica, com o mercado em alta procura por jogos tornou
+
+\section{CPU vs GPU}
+
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[width=.80\textwidth]{comparacao_GPU_CPU.png}
+    \caption{Imagem comparando de forma simplifica a arquitetura dos processadores. Do lado esquerdo a arquitetura de uma Unidade de Processamento Central, muito espaço para o cache e a unidade de comtrole. Do lado direto uma unidade de processamento Gráfica, como uma grande região segmentada dedicada a computação aritimética e lógica. (Fonte: Wikimedia Commons \protect\footnotemark)}
+    \label{fig:cpuvsgpu}
+  \end{figure}
+
+  \footnotetext{Disponível em \url{https://commons.wikimedia.org/wiki/File:Cpu-gpu.svg} Creative Commons Attribution 3.0 Unported}
+
 
   Na Figura~\ref{fig:cpuvsgpu} texto texto
 
@@ -17,3 +68,13 @@
 \section{Bibliotecas: OpenCL e CUDA}
   o que são e como funcionam
   porque escolhemos cuda?
+  colocar código de cada uma
+
+\section{Aplicações e usos avançados}
+
+aprendiozado de máquina, deep learning,
+hadoop
+simulações climáticas
+realidade virtual
+renderização em tempo real de rostos humanos reais
+bitcoinbilhões de ciclos, no total, por segundo
