@@ -13,10 +13,10 @@ A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu pro
 
   \footnotetext{Disponível em \url{https://commons.wikimedia.org/wiki/File:NVIDIA-GTX-1070-FoundersEdition-FL.jpg} Domínio público}
 
-  Placa de vídeo é uma peça que pode ou não estar presente em um computador, ela é responsável por fornecer o hardware especializado em renderização gráfica, projetado para prover um grande aumento de performance a um baixo custo se comparado a CPUs no que disrespeito a tranformação de dados em memoria em imagens e vídeos, prontos para serem apresentados em telas e monitores. São constituídas principalmente de:
+  Placa de vídeo é uma peça que pode ou não estar presente em um computador, ela é responsável por fornecer o hardware especializado em renderização gráfica, projetado para prover um grande aumento de performance a um baixo custo se comparado a CPUs no que disrespeito a tranformação de dados na memoria em imagens e vídeos, prontos para serem apresentados em telas e monitores. São constituídas principalmente de:
   \begin{itemize}
     \item Um chip de memória, cuja a principal função é armazenar texturas, ou qualquer outro dado que deverá ser várias vezes utilizado, consultado, no processo de renderização.
-    \item Portas de acesso e conexão a monitores e telas, variam entre VGA (Video Graphics Array), DVI (Digital Visual Interface) e HDMI (High-Definition Muiltimidia Interface). São a saída mais comum às computações das placas.
+    \item Portas de acesso e conexão a monitores e telas, variam entre VGA (Video Graphics Array), DVI (Digital Visual Interface) e HDMI (High-Definition Muiltimidia Interface). São as saídas mais comuns às computações das placas.
     \item Um processador, uma GPGPU composta de alguns milhares de núcleos
     \item Uma ou várias ventoinhas, para dissipar o calor produzido pelo processador
   \end{itemize}
@@ -29,25 +29,32 @@ A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu pro
 
   O vertex shader é um programa que executa um conjunto de operações para cada um dos vertíces de entrada, com o intuíto de projetar cada vértice, baseado em sua posição relativa à camera virtual, em um espaço de tela 2D. Destes vértices, é montado um conjunto de triângulos, que representam os objetos no espaço 2D. Assim, quanto maior a quantidade de triângulos, melhor a qualidade com que o objeto será representado \citep{closer-look:08}. Visto que cada cena  possui milhares de vértices e cada um deles pode ser tratado independentemente, os vértices podem ser processados paralelamente \citep{gpu-comp:08}.
 
-  A seguir, ocorre o processo de rasterização, que consiste em determinar quais
-  espaços da tela são cobertos por cada triângulo. Esse processo resulta na geração de fragmentos para cada espaço de tela coberto. Um fragmento pode ser considerado um "proto-pixel", que contem todas as informações necessárias para gerar um pixel na imagem final (profundidade, localização no frame buffer, etc.). A partir da posição da câmera virtual, os fragmentos que são ocultos por outros fragmentos são descartados \citep{gpu-comp:08}.
+  A seguir, ocorre o processo de rasterização, que consiste em determinar quais espaços da tela são cobertos por cada triângulo. Esse processo resulta na geração de fragmentos para cada espaço de tela coberto. Um fragmento é o que virá a ser um pixel, que contem todas as informações necessárias para gerar um na imagem final (profundidade, localização no frame buffer, etc.). A partir da posição da câmera virtual, os fragmentos que são ocultos por outros fragmentos são descartados, só é necessário mostras os objetos que podem ser vistos \citep{gpu-comp:08}.
 
-  Já o pixel shader opera sobre a saída gerada pelo processo de rasterização. O pixel shader é um programa que consiste em um conjunto de operações que são executadas sobre cada fragmento, antes que estes sejam plotados na tela. Utilizando as informações de cor dos vértices e, possivelmente, buscando dados adicionais na memória global em forma de texturas (imagens que são mapeadas sobre as superfícies dos objetos), cada fragmento é processado para obter-se a cor final do pixel. Assim como na etapa de processamento de vértices, os fragmentos são independentes e podem ser processados em paralelo. Esta etapa é a que tipicamente demanda maior processamento dentro da estrutura do pipeline gráfico \citep{gpu-comp:08}.
+  Já o pixel shader opera sobre a saída gerada pelo processo de rasterização. O pixel shader é um programa que consiste em um conjunto de operações que são executadas sobre cada fragmento, antes que estes sejam plotados na tela. Utilizando as informações de cor dos vértices e, possivelmente, buscando dados adicionais na memória global em forma de texturas (é nesse momento que a memória principal da placa é necessária), cada fragmento é processado para obter-se a cor final do pixel. Assim como na etapa de processamento de vértices, os fragmentos são independentes e podem ser processados em paralelo. Esta etapa é a que tipicamente demanda maior processamento dentro da estrutura do pipeline gráfico \citep{gpu-comp:08}.
 
-  Uma vez que os programas de shader necessitam ser aplicados em milhares de
-  vértices e pixels independentemente, as GPUs evoluíram para um conjunto de multiprocessadores massivamente paralelos. Além disso, dependendo do balanceamento da carga de trabalho da aplicação, apesar dos pixels serem dependentes dos vértices, ambos podem ser executados paralelamente. Esta característica resultou no aumento da programabilidade dos multiprocessadores da GPU \citep{massively:16}.
+  Uma vez que os programas de shader necessitam ser aplicados em milhares de vértices e pixels independentemente, as GPUs evoluíram para um conjunto de multiprocessadores massivamente paralelos. Além disso, dependendo do balanceamento da carga de trabalho da aplicação, apesar dos pixels serem dependentes dos vértices, ambos podem ser executados paralelamente. Esta característica resultou no aumento da programabilidade dos multiprocessadores da GPU \citep{massively:16}.
+
+  Essa cadeia de processamento é o que destacou as GPUs das CPUs convencionais. No desenvolvimento de processadores dedicados a processar essa cadeia na forma mais eficiente possível as GPUs tomaram um caminho mais focado na paralelização, com mais núcleos, mais unidades logico-aritméticas em detrerimento de mais ciclos por segundo, priorizando uma única memória grande e não muito rápida ao invés de varias camadas de memória cache muito rápida.
+
+  Esta arquiterura muito focada, ganhou a atenção de outras computações não necessariamente ligadas a renderização de imagens. Tal demanda eclodiu na flexibilização das GPUs para GPGPUs.
 
 
-
-  responsavel pela renderização de todas a s imagens, ligado diretamente com o monitor
-  nucleo das placas mais atuais
-  termo existe desde
   intel graphycs
 
 
 
 \section{A História das GPU e GPGPU}
-  As GPUs, a princípio, não foram criadas para cálculos numéricos ou simulações de particulas e sim para a rederização de imagens para jogos digitais \citep{Hague:13}, o alto custo na produção e aquisição de hardware mais potente na década de 70 impulsionou a criação de processadores mais dedicados e com funções mais específicas para a rederização gráfica, com o mercado em alta procura por jogos tornou
+  As GPUs, a princípio, não foram criadas para cálculos numéricos ou simulações de particulas e sim para a rederização de imagens para jogos digitais, o alto custo na produção e aquisição de hardware mais potente, pricipalmente a memória, na década de 70 impulsionou a criação de processadores mais dedicados e com funções mais específicas para a rederização gráfica. Impulsionada pelo mercado de jogos de video game, e buscando evitar o alto valor de chips de memória, placas de sistemas de arcade apresentavam uma composição de chips de vídeo para combinar os dados enquanto estes eram escaneados saindo para o monitor \citep{Hague:13}.
+
+  Em 1977 o Atari 2600 usou um \textit{video shifter}, um tipo de circuíto integrado responsável por emitir o sinal de TV, chamado \textit{Television Interface Adaptor} ou TIA. Foi customizado para ser capaz de gerar as imagens finais para a tela, os efeitos sonoros e ler os comandos vindos dos joysticks, teve como direcionamento em seu design a economia de memória RAM, muito cara na época \citep{Hague:13} .
+% \citep{atari-field:83}
+  Em 1985 o Commodore Amiga apresentou um chip gráfico que vinha com um circuíto \textit{blitter}, para maior velocidade na manipulação de memória, tranformação de bitmaps, desenho de linhas e funções de preenchimento de áreas. Também vinha com um co-pocessador, capaz de executar instruções únicas e manipular os registradores em sincronia com o canhão de desenho dos tubos de raios catódicos das televisões .
+  % \citep{amiga:17}
+
+  Na decada de 90 a nintendo e a sony criaram seus consoles de vídeo game, o nintendo 64 e o playstation, ambos capazes de produzir gráficos em 3 dimensões a partir de polígonos. A distição entre os dois principais processadores desses vídeo games eram claras, a nintendo já havia detalhado que seu sistema vinha com dois processadores: um de propositos mais geral o \textit{MIPS R4200} e o \textit{Reality Coprocessor} desenhado para cálculos em 3d de alta performance, audio e vídeo pre-processamento, mapeamento de textura e buferização de profundidade em tempo real .
+% \citep{manual64:97} \citep{N64's U.S. Launch}
+  A nintendo não utilizou o termo CPU para descrever seu \textit{Reality Coprocessor}, foi a Nvidia em 1999 que popularizou o termo. Ele já existia desde década de 80, porém somente ápos a capanha de marketing de sua placa de vídeo, a GeForce 256 com o logo: \textit{"the world's first GPU"} (A primeira GPU do mundo) que o termo ficou mais comum.
 
 \section{CPU vs GPU}
 
