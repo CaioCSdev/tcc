@@ -47,16 +47,68 @@ A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu pro
 \section{A História das GPU e GPGPU}
   As GPUs, a princípio, não foram criadas para cálculos numéricos ou simulações de particulas e sim para a rederização de imagens para jogos digitais, o alto custo na produção e aquisição de hardware mais potente, pricipalmente a memória, na década de 70 impulsionou a criação de processadores mais dedicados e com funções mais específicas para a rederização gráfica. Impulsionada pelo mercado de jogos de video game, e buscando evitar o alto valor de chips de memória, placas de sistemas de arcade apresentavam uma composição de chips de vídeo para combinar os dados enquanto estes eram escaneados saindo para o monitor \citep{Hague:13}.
 
-  Em 1977 o Atari 2600 usou um \textit{video shifter}, um tipo de circuíto integrado responsável por emitir o sinal de TV, chamado \textit{Television Interface Adaptor} ou TIA. Foi customizado para ser capaz de gerar as imagens finais para a tela, os efeitos sonoros e ler os comandos vindos dos joysticks, teve como direcionamento em seu design a economia de memória RAM, muito cara na época \citep{Hague:13} .
-% \citep{atari-field:83}
-  Em 1985 o Commodore Amiga apresentou um chip gráfico que vinha com um circuíto \textit{blitter}, para maior velocidade na manipulação de memória, tranformação de bitmaps, desenho de linhas e funções de preenchimento de áreas. Também vinha com um co-pocessador, capaz de executar instruções únicas e manipular os registradores em sincronia com o canhão de desenho dos tubos de raios catódicos das televisões .
-  % \citep{amiga:17}
+  Em 1977 o Atari 2600 usou um \textit{video shifter}, um tipo de circuíto integrado responsável por emitir o sinal de TV, chamado \textit{Television Interface Adaptor} ou TIA. Foi customizado para ser capaz de gerar as imagens finais para a tela, os efeitos sonoros e ler os comandos vindos dos joysticks, teve como direcionamento em seu design a economia de memória RAM, muito cara na época \citep{Hague:13} \citep{atari-field:83}.
 
-  Na decada de 90 a nintendo e a sony criaram seus consoles de vídeo game, o nintendo 64 e o playstation, ambos capazes de produzir gráficos em 3 dimensões a partir de polígonos. A distição entre os dois principais processadores desses vídeo games eram claras, a nintendo já havia detalhado que seu sistema vinha com dois processadores: um de propositos mais geral o \textit{MIPS R4200} e o \textit{Reality Coprocessor} desenhado para cálculos em 3d de alta performance, audio e vídeo pre-processamento, mapeamento de textura e buferização de profundidade em tempo real .
-% \citep{manual64:97} \citep{N64's U.S. Launch}
-  A nintendo não utilizou o termo CPU para descrever seu \textit{Reality Coprocessor}, foi a Nvidia em 1999 que popularizou o termo. Ele já existia desde década de 80, porém somente ápos a capanha de marketing de sua placa de vídeo, a GeForce 256 com o logo: \textit{"the world's first GPU"} (A primeira GPU do mundo) que o termo ficou mais comum.
+  Em 1985 o Commodore Amiga apresentou um chip gráfico que vinha com um circuíto \textit{blitter}, para maior velocidade na manipulação de memória, tranformação de bitmaps, desenho de linhas e funções de preenchimento de áreas. Também vinha com um co-pocessador, capaz de executar instruções únicas e manipular os registradores em sincronia com o canhão de desenho dos tubos de raios catódicos das televisões \citep{amiga:17}.
+
+  Na decada de 90 a nintendo e a sony criaram seus consoles de vídeo game, o nintendo 64 e o playstation, ambos capazes de produzir gráficos em 3 dimensões a partir de polígonos. A distição entre os dois principais processadores desses vídeo games eram claras, a nintendo já havia detalhado que seu sistema vinha com dois processadores: um de propositos mais geral o \textit{MIPS R4200} e o \textit{Reality Coprocessor} desenhado para cálculos em 3d de alta performance, pre-processamento de aúdio e vídeo, mapeamento de textura e buferização de profundidade em tempo real \citep{manual64:98} \citep{N64Launch:96}.
+
+  A nintendo não utilizou o termo CPU para descrever seu \textit{Reality Coprocessor}, foi a Nvidia em 1999 que popularizou o termo. Ele já existia desde década de 80, porém somente ápos a capanha de marketing de sua placa de vídeo, a GeForce 256 com o logo: \textit{"the world's first GPU"} (A primeira GPU do mundo) que o termo ficou mais comum \citep{nvida256}.
+
+  Já nos anos 2000 teve mais NVIDIA e ATI
+  By October 2002, with the introduction of the ATI Radeon 9700 (also known as R300), the world's first Direct3D 9.0 accelerator, pixel and vertex shaders could implement looping and lengthy floating point math, and were quickly becoming as flexible as CPUs, yet orders of magnitude faster for image-array operations. Pixel shading is often used for bump mapping, which adds texture, to make an object look shiny, dull, rough, or even round or extruded.[37]
+
+  Nos dia atuais:
+  The PS4 and Xbox One were released in 2013, they both use GPUs based on AMD's Radeon HD 7850 and 7790. Nvidia's Kepler line of GPUs was followed by the Maxwell line, manufactured on the same process. 28 nm chips by Nvidia were manufactured by TSMC, the Taiwan Semiconductor Manufacturing Company, that was manufacturing using the 28 nm process at the time. Compared to the 40 nm technology from the past, this new manufacturing process allowed a 20 percent boost in performance while drawing less power.[48][49] Virtual reality headsets like the Oculus Rift and the HTC Vive have very high system requirements. Headset manufacturers have recommended GPUs for good virtual reality experiences. At their release, they had the GTX 970 from Nvidia and the R9 290 from AMD as the recommended GPUs.[50][51] Pascal is the newest generation of graphics cards by Nvidia released in 2016. The GeForce 10 series of cards are under this generation of graphics cards. They are made using the 16 nm manufacturing process which improves upon previous microarchitectures.[52] The Polaris 11 and Polaris 10 GPUs from AMD are made with a 14 nm process. Their release results in a big increase in the performance per watt of AMD video cards.[53]
+
 
 \section{CPU vs GPU}
+
+Em 2009, o poder computacional para operações de ponto flutuante de uma GPU
+era cerca de dez vezes superiores ao de uma CPU tradicional. Já a sua largura de
+banda era cerca de três vezes superior (KIRK; HWU, 2010). Para compreender os
+motivos desta diferença de desempenho, é necessário entender os propósitos de cada
+um desses processadores.
+A CPU é otimizada para desempenho de código sequencial, sendo que nessa,
+geralmente, utilizam-se de uma lógica de controle mais sofisticada, fazendo com que
+a CPU seja projetada com mecanismos como previsão de desvios e execução fora de
+ordem. Desta forma, permite-se que um único fluxo de instruções seja executado em
+paralelo enquanto a aparência de uma execução sequencial é mantida. Além disso,19
+a CPU também é otimizada de forma a reduzir a latência de acesso aos dados e às
+instruções na memória principal. De fato, grande parte dos recursos da CPU são
+utilizadas para o gerenciamento de vários nı́veis de memória cache, que possuem o
+objetivo de minimizar o tempo necessário para que os dados requisitados sejam de
+fato utilizados pelo processador. Uma vez que a CPU tem como alvo programas
+de propósito geral, poucos de seus recursos são utilizados para processamento de
+operações de ponto flutuante (KIRK; HWU, 2010).
+A GPU é adequada para a solução de problemas onde o processamento dos
+dados pode ser realizado massivamente em paralelo, ou seja, o mesmo programa
+é executado simultaneamente em muitos elementos com alta intensidade aritmética
+(NVIDIA, 2010a). Por causa disto, as GPUs dedicam a maior parte de seus recursos
+ao processamento de dados ao invés de cache de dados e controle de fluxo (KIRK;
+HWU, 2010).
+Na Figura 2.1, pode-se observar a maneira com que os transistores do hardware
+são empregados nos chips da CPU e GPU. Na CPU, grande parte da área do chip é
+dedicada à memória cache e lógica de controle. Na GPU, diferentemente da CPU,
+a maior parte dos recursos do chip é projetada para processamento massivamente
+paralelo de operações de ponto-flutuante. Assim, sua capacidade de processamento
+é aumentada consideravelmente (NVIDIA, 2010a).
+
+Na GPU, grande parte dos dados é utilizada uma única vez, sendo que estes
+dados precisam ser transferidos da memória principal da GPU para o uso de seus
+multiprocessadores. Desta forma, o sistema de memória da GPU é projetado para
+maximizar a taxa de transferência de dados (throughput), ou seja, a GPU é projetada
+de forma a aumentar a largura de banda, ao invés de minimizar a latência para o
+acesso aos dados. Esta grande largura de banda é obtida através do uso de amplos
+barramentos e memórias dynamic random access memory (DRAM) do tipo graphics
+double data rate (GDDR) (FATAHALIAN; HOUSTON, 2008).
+É importante destacar que nem todas as aplicações terão um desempenho melhor
+na GPU em relação à CPU. As GPUs são projetadas como engines de processamento20
+numérico, e não executam bem os programas sequenciais que as CPUs normalmente
+executam. Assim, deve-se utilizar a placa GPU como um co-processador para au-
+xiliar a CPU na execução dos programas, de forma que sejam atribuı́das as partes
+sequenciais à CPU e as partes com processamento paralelo aritmético à GPU (KIRK;
+HWU, 2010).
 
   \begin{figure}[!h]
     \centering
@@ -73,6 +125,48 @@ A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu pro
   era uma vez...
 
 \section{Bibliotecas: OpenCL e CUDA}
+Open Computing Language (OpenCL)[3] é uma framework aberta para progra-
+mação genérica para vários processadores, dentre eles GPUs e CPUs. OpenCL
+da suporte para sistemas embarcados, sistemas pessoais, corporativos e até HPC.
+Ele consegue isso criando uma interface de baixo nível, ou seja, o mais próx-
+imo do hardware possível, e mantendo auto desempenho, com uma abstração
+portátil. O OpencL também é uma API para controle de aplicações paralelas em
+sistemas com processadores heterogêneos. O OpenCL consegue, numa mesma
+aplicação, reconhecer vários processadores diferentes dentro de um mesmo com-
+putador, e executar códigos distintos entre eles, coordenando os hardwares.
+Aqui, como no CUDA, a parte do código executado na CPU é chamada de Host
+e o hardware que executa os kernels de Devices . É importante lembrar que
+dado essa generalização do OpenCL, é possível que a CPU onde o código do
+host esteja executando seja usada para rodar um kernel, e essa CPU passa a ser
+um device ao mesmo tempo em que roda o host . Tanto o fato do OpenCL ser
+aberto quanto o fato dele não se restringir a um hardware especico fazem dele
+a linguagem mais usada para GPGPU fora de GPUs NVIDIA
+
+Compute Unied Device Architecture (CUDA)[2] é uma arquitetura de progra-
+mação para GPUs criada pela NVIDIA. Ele adiciona suas diretrizes para as
+linguagens C, C++, FORTRAN e Java, permitindo que elas usem a GPU. Esse
+trabalho usa o CUDA junto com a linguagem C. A versão 1.0 do CUDA foi
+disponibilizada no inicio de 2007. Atualmente só existe um compilador para
+CUDA, o nvcc, e ele só da suporte para GPUs NVIDIA.
+Para uma função executar na GPU ela precisa ser invocada de um programa
+da CPU. Chamamos esse programa de Host e a GPU onde o kernel executará
+de Device .
+O CUDA implementa um conjunto virtual de instruções e memória, tornando
+os programas retroativos. O compilador primeiro compila o código em C para
+um intermediário, chamado de PTX, que depois será convertido em linguagem
+de máquina. Na conversão do PTX para linguagem de máquina o compilador
+verica quais instruções o device suporta e converte o código para usar as in-
+struções corretas. Para obter o maior desempenho possível, é importante saber
+para qual versão o código nal será compilado, pois na passagem do código de
+uma versão maior para uma menor não existe a garantia que o algoritmo seguira
+as mesmas instruções, o compilador pode mudar um conjunto de instruções para
+outro menos eciente, ou em alguns casos, algumas instruções não existem em
+versões mais antigas do hardware.
+
+
+cuda mais facil de aprender
+
+
   o que são e como funcionam
   porque escolhemos cuda?
   colocar código de cada uma
