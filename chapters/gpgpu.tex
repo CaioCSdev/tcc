@@ -1,9 +1,10 @@
-\chapter{GPGPU}
+e\chapter{GPGPU}
 \label{cap:gpgpu}
 
 A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu processador, a GPU. Depois é descrita a motivação para a qual esse hardware foi criado, o por quê ainda é produzido e por que provavelmente continuará. Seguindo são apontadas as diferenças arquiteturais entre uma CPU e uma GPU, vantagens e desvatagens. Na continuação são apresentadas e demonstradas as duas principais linguagens que permitem o acesso a programação genérica na GPGPU a OpenCL e a CUDA, contendo o por quê neste projeto foi escolhido a linguagem CUDA. Por fim são apresentadas aplicações que se utilizam do estado da arte no hardware e software das placas gráficas mais atuais e avançadas.
 
 \section{Placas de vídeo}
+\label{sec:video_boards}
   \begin{figure}[!h]
     \centering
     \includegraphics[width=.80\textwidth]{NVIDIA-GTX-1070-FoundersEdition-FL.jpg}
@@ -65,7 +66,7 @@ A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu pro
 \section{CPU vs GPU}
 
 Em 2009, o poder computacional para operações de ponto flutuante de uma GPU
-era cerca de dez vezes superiores ao de uma CPU tradicional. Já a sua largura de
+era cerca de dez vezes superiores ao de uma CPU tradicional, ver seção ~\ref{sec:video_boards}. Já a sua largura de
 banda era cerca de três vezes superior (KIRK; HWU, 2010). Para compreender os
 motivos desta diferença de desempenho, é necessário entender os propósitos de cada
 um desses processadores.
@@ -174,8 +175,23 @@ cuda mais facil de aprender
 \section{Aplicações e usos avançados}
 
 aprendiozado de máquina, deep learning,
-hadoop
+O aprendizado profundo (Deep Learning) é a área de mais rápido crescimento em inteligência artificial, ajudando os computadores a compreender dados, como imagens, som e texto. Usando vários níveis de redes neurais, os computadores agora têm a capacidade de ver, aprender e reagir a situações complexas tão bem quanto ou melhor que os humanos. Isso está levando a uma forma totalmente diferente de pensar sobre seus dados, sua tecnologia, e os produtos e serviços que você oferece.
+
+As soluções atuais de aprendizado profundo contam quase exclusivamente com a computação acelerada pelas placas de vídeo NVIDIA (GPU’s) para treinar e acelerar aplicações desafiadoras, como identificação de imagens, caligrafia e vozes. As GPU’s se destacam em cargas de trabalho paralelas e aceleram as redes neurais em até 10 a 20 vezes, reduzindo cada uma das muitas iterações de treinamento de dados de semanas para dias. De fato, as placas de vídeo têm acelerado o treinamento de redes neurais profundas em 50 vezes em apenas três anos — um ritmo muito mais rápido do que a lei de Moore — com outras 10 vezes previstas para os próximos anos. A inovação em Inteligência Artificial está acontecendo em ritmo acelerado. Atualmente, os computadores não estão só aprendendo, estão pensando por si mesmos. Isso está abrindo oportunidades fantásticas em aplicações como robôs, medicina e carros com direção automática. É possível projetar e implementar rapidamente aplicações de aprendizado profundo para aproveitar esses avanços incríveis.
+
+As empresas atentas ao futuro que se aproxima rapidamente e que estão atentas às transformações, estão adotando o aprendizado profundo para lidar com volumes de dados que crescem exponencialmente, melhorias nos algoritmos de aprendizagem automática e avanços em hardware de computação . Isso as ajuda a encontrar novas formas de explorar a riqueza dos dados a seu alcance para desenvolver novos produtos, serviços e processos — e a criar uma vantagem competitiva inovadora.
+
+Neste link você encontra diversos exemplos de como as GPU’s estão sendo usadas para Deep Learning em reconhecimento de imagens:
+
 simulações climáticas
 realidade virtual
+
+irtual reality (VR) is a computer-generated scenario that simulates a realistic experience. The immersive environment can be similar to the real world in order to create a lifelike experience grounded in reality or sci-fi. Augmented reality systems may also be considered a form of VR that layers virtual information over a live camera feed into a headset, or through a smartphone or tablet device.
+
+Current VR technology most commonly uses virtual reality headsets or multi-projected environments, sometimes in combination with physical environments or props, to generate realistic images, sounds and other sensations that simulate a user's physical presence in a virtual or imaginary environment. A person using virtual reality equipment is able to "look around" the artificial world, move around in it, and interact with virtual features or items. The effect is commonly created by VR headsets consisting of a head-mounted display with a small screen in front of the eyes, but can also be created through specially designed rooms with multiple large screens.
+
 renderização em tempo real de rostos humanos reais
 bitcoinbilhões de ciclos, no total, por segundo
+In case you’re not aware of the situation, here’s what’s going on: Cryptocurrency mining requires immense computational power, and miners figured out years ago that the chips in many high-end graphics cards are well-suited to the task. The values of cryptocurrencies such as Ethereum and bitcoin have skyrocketed in recent months — a single bitcoin is currently worth well over 11,000, although that figure is in flux and has been trending downward since a peak above 19,000 last month. This has led people to put together “mining rigs” — after buying multiple consumer graphics cards for the necessary computing power — and then try to turn a profit on their investment by mining for cryptocurrency like Ethereum.
+
+For instance, the Nvidia GeForce GTX 1070’s suggested retail price is 380, but it was selling for upward of 450 last year and is now going for more than 700. Lower-end cards like the GTX 1050 and 1060 weren’t affected initially, but miners have moved on to them as the better cards have sold out, pushing up prices for the cheaper GPUs as well. And, as the value of bitcoin spiked in December, prices rose even further.
