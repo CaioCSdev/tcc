@@ -73,55 +73,23 @@ A seguir é explanado o que vem a ser uma placa gráfica, principalmente seu pro
 
 Ambos os processadores tem a tarefa primordial de executar intruções manipulando a memória e performando cálculos aritimeticos, porém suas necessidades particulares e os casos de uso que se encotraram redefiriam sua arquitetura, agora mesmo tendo a mesma origem suas peças de hardware são profundamente distintas, cada uma com suas vantagens e desvatagens sobre a outra.
 
-Já em 2009, o poder computacional para operações em ponto flutuante de uma GPU era cerca de dez vezes maior ao de uma CPU, ver seção ~\ref{sec:video_boards}. Já a sua taxa de transferência era cerca de três vezes superior \citep{massively:16}. Uma CPU é otimizada para desempenho de código sequencial, geralmente utilizam-se de uma lógica de controle mais sofisticada, fazendo com que a CPU seja projetada com mecanismos como previsão de desvios e execução fora de ordem(Out-of-order execution" (PDF). cs.washington.edu. 2006. Retrieved 17 January 2014. "don't wait for previous instructions to execute if this instruction does not depend on them"). Desta forma, permite-se que um único fluxo de instruções seja executado em paralelo enquanto a aparência de uma execução sequencial é mantida. Além disso, a CPU também é otimizada de forma a reduzir a latência de acesso aos dados e às
-instruções na memória principal. De fato, grande parte dos recursos da CPU são
-utilizadas para o gerenciamento de vários nı́veis de memória cache, que possuem o
-objetivo de minimizar o tempo necessário para que os dados requisitados sejam de
-fato utilizados pelo processador. Uma vez que a CPU tem como alvo programas
-de propósito geral, poucos de seus recursos são utilizados para processamento de
-operações de ponto flutuante (KIRK; HWU, 2010).
-A GPU é adequada para a solução de problemas onde o processamento dos
-dados pode ser realizado massivamente em paralelo, ou seja, o mesmo programa
-é executado simultaneamente em muitos elementos com alta intensidade aritmética
-(NVIDIA, 2010a). Por causa disto, as GPUs dedicam a maior parte de seus recursos
-ao processamento de dados ao invés de cache de dados e controle de fluxo (KIRK;
-HWU, 2010).
-Na Figura 2.1, pode-se observar a maneira com que os transistores do hardware
-são empregados nos chips da CPU e GPU. Na CPU, grande parte da área do chip é
-dedicada à memória cache e lógica de controle. Na GPU, diferentemente da CPU,
-a maior parte dos recursos do chip é projetada para processamento massivamente
-paralelo de operações de ponto-flutuante. Assim, sua capacidade de processamento
-é aumentada consideravelmente (NVIDIA, 2010a).
+Já em 2009, o poder computacional para operações em ponto flutuante de uma GPU era cerca de dez vezes maior ao de uma CPU, ver seção ~\ref{sec:video_boards}. Já a sua taxa de transferência era cerca de três vezes superior \citep{massively:16}. Uma CPU é otimizada para desempenho de código sequencial, geralmente utilizam-se de uma lógica de controle mais sofisticada, fazendo com que a CPU seja projetada com mecanismos como previsão de desvios e execução fora de ordem (Out-of-order execution (PDF). cs.washington.edu. 2006. Retrieved 17 January 2014. "don't wait for previous instructions to execute if this instruction does not depend on them"). Desta forma, permite-se que um único fluxo de instruções seja executado em paralelo enquanto a aparência de uma execução sequencial é mantida. Além disso, a CPU também é otimizada de forma a reduzir a latência de acesso aos dados e às instruções na memória principal. De fato, grande parte dos recursos da CPU são utilizadas para o gerenciamento de vários níveis de memória cache, que possuem o objetivo de minimizar o tempo necessário para que os dados requisitados sejam de fato utilizados pelo processador. Uma vez que a CPU tem como alvo programas de propósito geral, poucos de seus recursos são utilizados para processamento de operações de ponto flutuante \citep{massively:16}.
 
-Na GPU, grande parte dos dados é utilizada uma única vez, sendo que estes
-dados precisam ser transferidos da memória principal da GPU para o uso de seus
-multiprocessadores. Desta forma, o sistema de memória da GPU é projetado para
-maximizar a taxa de transferência de dados (throughput), ou seja, a GPU é projetada
-de forma a aumentar a largura de banda, ao invés de minimizar a latência para o
-acesso aos dados. Esta grande largura de banda é obtida através do uso de amplos
-barramentos e memórias dynamic random access memory (DRAM) do tipo graphics
-double data rate (GDDR) (FATAHALIAN; HOUSTON, 2008).
-É importante destacar que nem todas as aplicações terão um desempenho melhor
-na GPU em relação à CPU. As GPUs são projetadas como engines de processamento20
-numérico, e não executam bem os programas sequenciais que as CPUs normalmente
-executam. Assim, deve-se utilizar a placa GPU como um co-processador para au-
-xiliar a CPU na execução dos programas, de forma que sejam atribuı́das as partes
-sequenciais à CPU e as partes com processamento paralelo aritmético à GPU (KIRK;
-HWU, 2010).
+já a GPU foi consebida para ser a solução de problemas no qual processamento dos dados pode ser realizado massivamente em paralelo, ou seja, o mesmo programa é executado simultaneamente em muitos conjuntos de dados com alta intensidade aritmética (NVIDIA, 2010a). Por causa disto, as GPUs dedicam a maior parte de seus recursos ao processamento aritmético ao invés de cache de dados ou controle de fluxo \citep{massively:16}.
+
+Na Figura~\ref{fig:cpuvsgpu}, é exposta de maneira simplificada com que os transistores do hardware são distribuidos nos chips da CPU e GPU. Na imagem da esquerda há a representação de uma CPU, nela grande parte da área do chip é dedicada à memória cache e a lógica de controle. já na GPU, a imagem do lado direito, a maior parte dos recursos do chip é destinada ao processamento em paralelo de operações em ponto-flutuante. Assim, sua capacidade de processamento de dados é potencializada consideravelmente (NVIDIA, 2010a).
+
+Na GPU, grande parte dos dados é utilizada uma única vez, sendo que estes dados precisam ser transferidos da memória principal da GPU para o uso de seus multiprocessadores. Desta forma, o sistema de memória da GPU é projetado para maximizar a taxa de transferência de dados (throughput), ou seja, a GPU é projetada de forma a aumentar a largura de banda, ao invés de minimizar a latência para o acesso aos dados. Esta grande largura de banda é obtida através do uso de amplos barramentos e memórias dynamic random access memory (DRAM) do tipo graphics
+double data rate (GDDR) (FATAHALIAN; HOUSTON, 2008). É importante destacar que nem todas as aplicações terão um desempenho melhor na GPU em relação à CPU. As GPUs são projetadas como engines de processamento numérico, e não executam bem os programas sequenciais que as CPUs normalmente executam. Assim, deve-se utilizar a placa GPU como um co-processador para auxiliar a CPU na execução dos programas, de forma que sejam atribuídas as partes sequenciais à CPU e as partes com processamento paralelo aritmético à GPU \citep{massively:16}.
 
   \begin{figure}[!h]
     \centering
     \includegraphics[width=.80\textwidth]{comparacao_GPU_CPU.png}
-    \caption{Imagem comparando de forma simplifica a arquitetura dos processadores. Do lado esquerdo a arquitetura de uma Unidade de Processamento Central, muito espaço para o cache e a unidade de comtrole. Do lado direto uma unidade de processamento Gráfica, como uma grande região segmentada dedicada a computação aritimética e lógica. (Fonte: Wikimedia Commons \protect\footnotemark)}
+    \caption{Imagem comparando de forma simplifica a arquitetura dos processadores. Do lado esquerdo a arquitetura de uma Unidade de Processamento Central, muito espaço para o cache e a unidade de controle. Do lado direto uma unidade de processamento Gráfica, como uma grande região segmentada dedicada a computação aritimética e lógica. (Fonte: Wikimedia Commons \protect\footnotemark)}
     \label{fig:cpuvsgpu}
   \end{figure}
 
   \footnotetext{Disponível em \url{https://commons.wikimedia.org/wiki/File:Cpu-gpu.svg} Creative Commons Attribution 3.0 Unported}
-
-
-  Na Figura~\ref{fig:cpuvsgpu} texto texto
-
-  era uma vez...
 
 \section{Bibliotecas: OpenCL e CUDA}
 Open Computing Language (OpenCL)[3] é uma framework aberta para progra-
@@ -138,10 +106,10 @@ e o hardware que executa os kernels de Devices . É importante lembrar que
 dado essa generalização do OpenCL, é possível que a CPU onde o código do
 host esteja executando seja usada para rodar um kernel, e essa CPU passa a ser
 um device ao mesmo tempo em que roda o host . Tanto o fato do OpenCL ser
-aberto quanto o fato dele não se restringir a um hardware especico fazem dele
+aberto quanto o fato dele não se restringir a um hardware especifico fazem dele
 a linguagem mais usada para GPGPU fora de GPUs NVIDIA
 
-Compute Unied Device Architecture (CUDA)[2] é uma arquitetura de progra-
+Compute Unied Device Architecture (CUDA)[2] é uma arquitetura de progra-
 mação para GPUs criada pela NVIDIA. Ele adiciona suas diretrizes para as
 linguagens C, C++, FORTRAN e Java, permitindo que elas usem a GPU. Esse
 trabalho usa o CUDA junto com a linguagem C. A versão 1.0 do CUDA foi
@@ -154,12 +122,12 @@ O CUDA implementa um conjunto virtual de instruções e memória, tornando
 os programas retroativos. O compilador primeiro compila o código em C para
 um intermediário, chamado de PTX, que depois será convertido em linguagem
 de máquina. Na conversão do PTX para linguagem de máquina o compilador
-verica quais instruções o device suporta e converte o código para usar as in-
+verica quais instruções o device suporta e converte o código para usar as in-
 struções corretas. Para obter o maior desempenho possível, é importante saber
-para qual versão o código nal será compilado, pois na passagem do código de
+para qual versão o código nal será compilado, pois na passagem do código de
 uma versão maior para uma menor não existe a garantia que o algoritmo seguira
 as mesmas instruções, o compilador pode mudar um conjunto de instruções para
-outro menos eciente, ou em alguns casos, algumas instruções não existem em
+outro menos eciente, ou em alguns casos, algumas instruções não existem em
 versões mais antigas do hardware.
 
 
