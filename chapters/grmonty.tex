@@ -15,6 +15,7 @@
 
 
 \section{Como Faz}
+\label{sec:comofaz}
 
   No momento de criação e rastreio dos fótons o programa faz o uso da biblioteca \textbf{OpenMP} para paralelizar o desenvolvimento dos fótons, graças a esta abordagem é viável o potencial uso de todos os núcleos disponíveis na CPU da máquina. A biblioteca é utilizada para que cada fóton seja produzido e espalhado de forma independente dos outros e funcionando em paralelo, além disso todas as instruções não dependem do fóton em si, elas são as mesmas instruções para todos os fótons. Desta forma podemos caracterizar o \textbf{grmonty} como tendo uma computação SIMD.
 
@@ -23,6 +24,7 @@
 
   Toda a vez que um fóton é criado logo em seguida sua rota é traçada, a relação entre criação e cálculo de trajetória é de 1 para 1. O que é evidente ao se observar as linhas 106 a 137 do \textit{grmonty.cu}, aqui copiadas:
 
+  \label{sec:main_loop}
   \begin{lstlisting}
     #pragma omp parallel private(ph)
   	{
