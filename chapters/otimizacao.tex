@@ -151,9 +151,15 @@ void record_super_photon(struct of_photon *ph)
     \end{figure}
 
   \subsection{math.h}
-    Durante o desenvolvimento algumas funções matemáticas que o grmonty usava e que são implementadas pela gnu sentific library não poderem ser ecxecutadas na gpu uma mes que a não existe suporte para essas biblioteca pela a Nvidia, porém existe uma biblioteca similar da própria nvidia que aprensenta uma gerande coleção de funções matemparicas que serviram como substitutas para as da gnu.
+    Algumas funções matemáticas que o grmonty usa e que são implementadas pela gnu sentific library não poderem ser executadas na gpu uma vez que a não existe suporte para essas biblioteca pela a Nvidia, porém existe uma biblioteca similar da própria nvidia, a CUDAmath que aprensenta uma grande coleção de funções matemáticas que serviram como substitutas para as da gnu.
 
-    O grmonty utiliza  as funções 1 2 3 destas 1 e2 tem uma função identica  em sua bibliotexca, porem ela não possui essa função e para isso tivemos que codifica-la nos mesmos
+    O grmonty utiliza as funções:
+    \begin{itemize}
+      \item \textit{int gsl\_sf\_bessel\_Kn\_e(int n, double x, gsl_sf_result * result)} método de calcula a função de Bessel cilindrica modificada irregular de ordem n no ponto x
+      \item \textit{void gsl\_ran\_dir\_3d(const gsl_rng * r, double * x, double * y, double * z)} Função que retorna
+    \end{itemize}
+
+    2 3 destas 1 e2 tem uma função identica  em sua bibliotexca, porem ela não possui essa função e para isso tivemos que codifica-la nos mesmos
 
     a funlçao emq eustao trata da criação de vetorner de tres dimensões e de ordem 1 aleátorios com uma dispeção uniforme.
 
