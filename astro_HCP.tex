@@ -38,6 +38,7 @@
 \usepackage[all]{hypcap}                    % soluciona o problema com o hyperref e capitulos
 \usepackage[round,sort,nonamebreak]{natbib} % citação bibliográfica textual(plainnat-ime.bst)
 \usepackage{emptypage}  % para não colocar número de página em página vazia
+\usepackage{rotating}
 \fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
 
 % ---------------------------------------------------------------------------- %
@@ -165,14 +166,13 @@ keywordstyle=\color{blue}
 
 \chapter*{Resumo}
 
-Aqui vai o resumo que ainda tem que ser feito....
+  Grmonty é um programa para o cálculo do espectro radioativo próximo a buracos negros, mas afim de executá-lo é necessário paciência pois sua estrutura é muito onerosa á CPU da máquina. Com o intuito de melhorar a performance do programa uma técnica de Computação de Alta Performance é empregada, a utilização de processadores massivamente paralelos, no caso as GPGPUs para distribuir a carga de trabalho e aumentar a velocidade de execução. Com esta técnica demonstramos uma aparente melhora em 3 vezes na velocidade de execução, fornecendo indícios que a técnica pode trazer grandes vantagens a performance de um programa.
 \\
 
 \noindent \textbf{Palavras-chave:} GPGPU, CUDA, HPC, Monte Carlo, Transferência radioativa, Buraco Negro.
 
 \chapter*{Abstract}
-
-  And here will be the english abstract, that still need to be done....
+  Grmonty is a software made for the calculus o radiactive spectrum near black holes, but in order to execute it pacience is needed since it's struct takes to hash with the CPU of the machine. With the ideia in mind of improving the performance of the software a tecnic from High Performance computing is applied, the use of massively parallel processors, in this case the GPGPUS to distribute the worload and increase the speed of execution. with this tecnic we show what seems to be a 3 times improve im speed of execution, providing evidence that the tecnic may bring gains in performance for one's program.
 \\
 
 \noindent \textbf{Keywords:} GPGPU, CUDA, HPC, Monte Carlo, Rasioactive Transfer, Black Hole.
@@ -228,7 +228,6 @@ Aqui vai o resumo que ainda tem que ser feito....
 \input chapters/gpgpu
 \input chapters/otimizacao
 \input chapters/resultados
-\input chapters/futuro
 \input chapters/conclusoes
 
 % cabeçalho para os apêndices
@@ -236,7 +235,7 @@ Aqui vai o resumo que ainda tem que ser feito....
 \fancyhead[RE,LO]{}
 \appendix
 
-% \include{ape-exemplo}      % associado ao arquivo: 'ape-conjuntos.tex'
+\include{ape-exemplo}      % associado ao arquivo: 'ape-conjuntos.tex'
 
 
 % ---------------------------------------------------------------------------- %
