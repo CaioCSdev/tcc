@@ -150,7 +150,7 @@ keywordstyle=\color{blue}
   \vskip 5cm
 
   \begin{center}
-    Supervisor: Prof. Dr. Rodrigo Nemmen da Silva
+    Supervisor: Prof. Dr. Rodrigo Nemmen da Silva (IAG/USP)
 
     \vskip 5cm
     \normalsize{São Paulo}
@@ -165,14 +165,13 @@ keywordstyle=\color{blue}
 % Resumo
 
 \chapter*{Resumo}
-
-  Grmonty é um programa para o cálculo do espectro radioativo próximo a buracos negros, mas afim de executá-lo é necessário paciência pois sua estrutura é muito onerosa á CPU da máquina. Com o intuito de melhorar a performance do programa uma técnica de Computação de Alta Performance é empregada, a utilização de processadores massivamente paralelos, no caso as GPGPUs para distribuir a carga de trabalho e aumentar a velocidade de execução. Com esta técnica demonstramos uma aparente melhora em 3 vezes na velocidade de execução, fornecendo indícios que a técnica pode trazer grandes vantagens a performance de um programa.
+  Grmonty é um programa que calcula o espectro radioativo próximo a buracos negros. Para executá-lo é necessária muita paciência, uma vez que sua estrutura onera muito a CPU da máquina. Com o intuito de melhorar o desempenho do programa é empregada uma técnica de Computação de Alta Performance, na qual a carga de trabalho é dividida entre vários processadores, por meio das placas de gráficas, as quais possuem centenas de deles. Dividindo a carga de trabalho, rodando em paralelo, demonstramos uma aparente melhora de 3 vezes na velocidade de execução, fornecendo indícios de que esse método pode trazer grandes vantagens ao desempenho do programa.
 \\
 
 \noindent \textbf{Palavras-chave:} GPGPU, CUDA, HPC, Monte Carlo, Transferência radioativa, Buraco Negro.
 
 \chapter*{Abstract}
-  Grmonty is a software made for the calculus o radiactive spectrum near black holes, but in order to execute it pacience is needed since it's struct takes to hash with the CPU of the machine. With the ideia in mind of improving the performance of the software a tecnic from High Performance computing is applied, the use of massively parallel processors, in this case the GPGPUS to distribute the worload and increase the speed of execution. with this tecnic we show what seems to be a 3 times improve im speed of execution, providing evidence that the tecnic may bring gains in performance for one's program.
+  Grmonty is a software made to calculate the radioactive spectrum near black holes, but in order to execute it, patience is needed since it's structure is onerous to the machine's CPU. With the intention of improving the performance of the software a technique is applied from High Performance computing, in which the workload is spread across multiple processors, through graphics cards, which posses hundreds of those. Splitting the execution, working in parallel, we show what seems to be 3 times improve in speed, providing evidence that the technique may bring gains in performance.
 \\
 
 \noindent \textbf{Keywords:} GPGPU, CUDA, HPC, Monte Carlo, Rasioactive Transfer, Black Hole.
@@ -198,22 +197,6 @@ keywordstyle=\color{blue}
   SIMD  & Única Instrução Múltiplos dados (\emph{Sigle Instruction Multiple Dada})\\
 \end{tabular}
 
-%% % ---------------------------------------------------------------------------- %
-%% \chapter{Lista de Símbolos}
-%% \begin{tabular}{ll}
-%%         $\omega$    & Frequência angular\\
-%%         $\psi$      & Função de análise \emph{wavelet}\\
-%%         $\Psi$      & Transformada de Fourier de $\psi$\\
-%% \end{tabular}
-
-%% % ---------------------------------------------------------------------------- %
-%% % Listas de figuras e tabelas criadas automaticamente
-%% \listoffigures
-%% \listoftables
-
-
-
-% ---------------------------------------------------------------------------- %
 % Capítulos do trabalho
 \mainmatter
 
