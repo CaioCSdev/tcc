@@ -10,12 +10,12 @@
 
   Quando é dito que o \textbf{grmonty} leva em consideração toda a relatividade geral, significa que o programa busca representar, em sua solução, todos os efeitos que a gravidade pode causar ao tecido do espaço-tempo e como esses efeitos propiciam interações entre as partículas, por fim moldando o espectro produzido
 
-  Utilizando o método de Monte Carlo na geração dos dados, os fótons, e a partir de um dado modelo de plasma fornecido como entrada, o qual especifica velocidade, densidade, força do campo magnético e temperatura, o programa busca gerar o espectro. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada um sua trajetória é traçada. Nessa trajetória o fóton é espalhado e pode passar por diferentes interações, até finalmente ser mensurado.
+  Utilizando o método de Monte Carlo na geração dos partículas, os fótons, e a partir de um dado modelo de plasma fornecido, que especifica velocidade, densidade, força do campo magnético e temperatura, o programa busca gerar um espectro. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada um sua trajetória é traçada. Nesse percurso o fóton é espalhado podendo passar por diversas interações, até finalmente ser mensurado.
 
-  Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, assim um relatório com o espectro é obtido e retornado pelo programa que finalmente termina.
+  Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, desta forma um relatório com o espectro é obtido e retornado pelo programa que finalmente termina.
 
 \section{Qual o objetivo}
-  Foram desenvolvidas várias técnicas para calcular a transferência radioativa a partir de fontes como as descritas abaixo\citep{Dolence:09}, porém poucas levam em conta a relatividade geral como um todo, principalmente no quesito de objetos, fontes, muito massivas ou com velocidades próxima a da luz, o \textbf{grmonty} vem para aprimorar esses cálculos.
+  Foram desenvolvidas várias técnicas para calcular a transferência radioativa em regiões com grandes deformações do espaço-tempo \citep{Dolence:09}, porém poucas levam em conta a toda a relatividade geral e os efeitos que podem advir da interação com objetos muito massivos, como buracos negros, ou partículas com velocidades próximas a da luz. O \textbf{grmonty} vem para levar esses efeitos em conta e aprimorar os cálculos.
 
   Qualquer fonte astrofísica de radiação que seja relativística, ou seja, qualquer corpo ou fenômeno fonte de radiação eletromagnética, seja do rádio à raios gama e que é relativística: apresenta uma considerável distorção no espaço-tempo, seja por estar em velocidades próximas a da luz, seja por possuir uma enorme quantidade de massa e/ou energia. Exemplos de objetos são os buracos negros e estrelas de nêutrons, fenômenos são os \textit{Gamma Ray Bursts} ou núcleos ativos de galáxias.
 
