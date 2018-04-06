@@ -2,11 +2,17 @@
 \label{cap:grmonty}
 
 \section{O que é o GRmonty}
-  Dolence et al definem o \textbf{grmonty} como ``software destinado a calcular o espectro de plasmas quentes e opticamente finos levando em consideração a relatividade geral por completo, utilizando um código de transporte radioativo baseado na técnica de Monte Carlo''\citep[p.1, traduzido]{Dolence:09}. Em outras palavras o programa estima o espectro de uma simulação de magnetoidrodinâmica \cite{eletro-hidro-dynamic} relativística utilizando o método de Monte Carlo.
+  Dolence et al definem o \textbf{grmonty} como ``software destinado a calcular o espectro de plasmas quentes e opticamente finos levando em consideração a relatividade geral por completo, utilizando um código de transporte radioativo baseado na técnica de Monte Carlo''\citep[p.1, traduzido]{Dolence:09}. Em outras palavras o programa estima o espectro de uma simulação de magnetoidrodinâmica \cite{eletro-hidro-dynamic:42} relativística utilizando o método de Monte Carlo.
 
-  Utilizando o método de Monte Carlo na geração dos dados, os fótons, e a partir de um dado modelo de plasma fornecido como entrada, o qual especifica velocidade, densidade, força do campo magnético e temperatura, o programa busca gerar o espectrograma. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada fóton sua trajetória é traçada. Nessa trajetória o fóton é espalhado e pode passar por diferentes interações, até finalmente ser mensurado.
+  Buracos negros são regiões no espaço-tempo que possuem uma força gravitacional tão grande que nenhuma partícula, nem mesmo a luz, é capaz de escapar dessa área. Uma vez que algo adentra esse local é impossível que saia.
 
-  Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, assim um relatório com o espectrograma é obtido e retornado pelo programa que finalmente termina.
+  Quando partículas passam a uma distância razoável de um buraco negro, é possível que sua trajetória seja drasticamente modificada, acarretando em interações que seriam difíceis de ocorrer em condições diferentes. Tais interações podem criar novas partículas, emitir radiação em diversas frequências ou resultar na queda do elemento no buraco negro.
+
+  Quando é dito que o \textbf{grmonty} leva em consideração toda a relatividade geral, significa que o programa busca representar, em sua solução, todos os efeitos que a gravidade pode causar ao tecido do espaço-tempo e como esses efeitos propiciam interações entre as partículas, por fim moldando o espectro produzido
+
+  Utilizando o método de Monte Carlo na geração dos dados, os fótons, e a partir de um dado modelo de plasma fornecido como entrada, o qual especifica velocidade, densidade, força do campo magnético e temperatura, o programa busca gerar o espectro. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada um sua trajetória é traçada. Nessa trajetória o fóton é espalhado e pode passar por diferentes interações, até finalmente ser mensurado.
+
+  Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, assim um relatório com o espectro é obtido e retornado pelo programa que finalmente termina.
 
 \section{Qual o objetivo}
   Foram desenvolvidas várias técnicas para calcular a transferência radioativa a partir de fontes como as descritas abaixo\citep{Dolence:09}, porém poucas levam em conta a relatividade geral como um todo, principalmente no quesito de objetos, fontes, muito massivas ou com velocidades próxima a da luz, o \textbf{grmonty} vem para aprimorar esses cálculos.
