@@ -4,7 +4,12 @@
 \section{O que é o GRmonty}
   Dolence et al definem o \textbf{grmonty} como ``software destinado a calcular o espectro de plasmas quentes e opticamente finos levando em consideração a relatividade geral por completo, utilizando um código de transporte radioativo baseado na técnica de Monte Carlo''\citep[p.1, traduzido]{Dolence:09}. Em outras palavras o programa estima o espectro de uma simulação de magnetoidrodinâmica \cite{eletro-hidro-dynamic:42} relativística utilizando o método de Monte Carlo.
 
-  Buracos negros são regiões no espaço-tempo que possuem uma força gravitacional tão grande que nenhuma partícula, nem mesmo a luz, é capaz de escapar dessa área. Uma vez que algo adentra esse local é impossível que saia.
+  Buracos negros são regiões no espaço-tempo que possuem uma gravidade tão grande, que a velocidade de escape nestas áreas é maior que a velocidade da luz, assim nada é capaz de escapar deste local. Uma vez que algo adentra é impossível que saia \cite{fatalgravity:10}.
+
+  Existem diferentes categorias de buracos negros, podemos diferenciá-los de acordo com a sua massa. Existem os buracos negros estelares que são restos de estrelas, e os super massivos que habitam o núcleo de galáxias. Quando uma estrela de pelo menos 25 vezes a massa do nosso Sol, isto é, 25 massas solares torna-se uma supernova, o que restou de seu núcleo pode vir a ser um buraco negro estelar. Fortes evidências apontam que tal objeto seja Cygnus X-1 com aproximadamente $14.8$ massas solares \cite{cygx1:11}.
+
+  No centro de nossa galáxia, encontra-se um outro buraco, que tem a sua massa estimada em $4 \cdot 10^6$ massa solares \cite{2016ApJ...830...17B}, ou seja, sua massa é milhões de vezes maior que a do sol. Assim sua formação não advém de uma supernova e sim da fusão de vários buracos negros  \cite{fatalgravity:10}.
+
 
   Quando partículas passam a uma distância razoável de um buraco negro, é possível que sua trajetória seja drasticamente modificada, acarretando em interações que seriam difíceis de ocorrer em condições diferentes. Tais interações podem criar novas partículas, emitir radiação em diversas frequências ou resultar na queda do elemento no buraco negro.
 
@@ -19,9 +24,9 @@
 
   %%%% rescunho
   O programa se propõem a resolver algumas equações de geodésicas em regiões onde o espaço-tempo é muito curvo, além disso levando em consideração a eletrodinâmica em fluídos sob campos magnéticos, a magnetoidrodinâmica \cite{eletro-hidro-dynamic:42}. Essas equações são as X, Y e Z.
-  
-  A equação X procura resolver ISSO dessa FORMA. sua implentação pode ser vista na função double f_de_x(double, double)
-  
+
+  A equação X procura resolver ISSO dessa FORMA. sua implentação pode ser vista na função double fdex(double, double)
+
   o grmonty foi usado para... RADIATIVE MODELS OF SGR A* FROM GRMHD SIMULATIONS, THE GALACTIC CENTER WEATHER FORECAST
   %%%%  rascunho
 
