@@ -8,42 +8,35 @@
 
   Existem diferentes categorias de buracos negros, podemos diferenciá-los de acordo com a sua massa. Existem os buracos negros estelares que são restos de estrelas, e os super massivos que habitam o núcleo de galáxias. Quando uma estrela com mais de 25 vezes a massa do Sol, isto é, 25 massas solares torna-se uma supernova, o resto de seu núcleo pode se tornar um buraco negro estelar. Fortes evidências apontam que Cygnus X-1 com aproximadamente $14.8$ massas solares é um buraco negro desse tipo \cite{cygx1:11}.
 
-  No centro de nossa galáxia evidências apontam a existência de um buraco negro super massivo Srg A*, com massa estimada em $4 \cdot 10^6$ massa solares \cite{2016ApJ...830...17B}, ou seja, sua massa é milhões de vezes maior que a do sol. Assim muito provavelmente sua formação não advém de uma supernova e sim da fusão de vários buracos negros \cite{fatalgravity:10}.
+  No centro de nossa galáxia evidências apontam a existência de um buraco negro super massivo Srg A*, com massa estimada em $4 \cdot 10^6$ massa solares \cite{2016ApJ...830...17B}, ou seja, sua massa é milhões de vezes maior que a do sol. Muito provavelmente sua formação não advém de uma supernova e sim da fusão de vários buracos negros \cite{fatalgravity:10}.
 
-  Buracos negros são geralmente rodeados de um gás composto de partículas carregadas, isto é, plasma. Este gás está em rotação ao seu redor disco de acresção, submetido a gigantescas acelerações e aquecendo a temperaturas  em 10k e $10^{12}$ Devido a estas altas temperaturas, este plasma emiti radiação em gigantesco intervalo de comprimento de ondas de radio a gama.
+  Buracos negros são geralmente rodeados por um gás composto de partículas carregadas, plasma. Este gás está em rotação ao redor do buraco formando um disco de acreção. Este plasma está submetido a gigantescas acelerações, sofrendo fricção, sendo comprimido e aquecido a temperaturas entre $10^4k$ e $10^{12}k$. Devido a estas altas temperaturas, este plasma emite radiação em um amplo intervalo de comprimentos de ondas, do rádio a raios gama \cite{1969Natur.223..690L}.
   
-  Um grande desafio tem sido modelar o chamado espectro de radiação eletromagnética  provenientes desses discos de acresção.
-  
-  O objetivo do GRmonty é quantificar  o espectro eletromagnético de plasma ao redor de buracos negros, como função das condições do gás (velocidade, densidade,  intensidade do campo magnético e temperatura) e das propriedades do buraco negro, massa, momento angular e carga elétrica \cite{Dolence:09}
-  
-  
+  Modelar e simular o espectro de radiação eletromagnética, gerado por estes discos de acreção tem sem mostrado um grande desafio. Este é o problema que o \textbf{gmronty} se propõem a resolver.
 
-  Quando é dito que o \textbf{grmonty} leva em consideração toda a relatividade geral, significa (quer dizer que todos os efeitos do espaço-tempo curvo da relatividade geral de Einstein são levados em conta na propagação dos fótons) que o programa busca representar, em sua solução, todos os efeitos que a gravidade pode causar ao tecido do espaço-tempo e como esses efeitos propiciam interações entre os fótons, por fim moldando o espectro produzido
+  Quando é dito que o programa leva em consideração toda a relatividade geral, significa que todos os efeitos do espaço-tempo curvo, da relatividade geral de Einstein, são levados em conta na absorção, emissão e espalhamento dos fótons. Criando assim um  espectro final mais detalhado e rico  \cite{Dolence:09}
 
-  Utilizando o método de Monte Carlo na geração de fótons, e a partir de um dado modelo de plasma fornecido velocidade, densidade,  intensidade do campo magnético e temperatura, o programa busca gerar um espectro da radiação emitida. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada um sua trajetória é traçada. Nesse percurso o fóton é espalhado podendo passar por diversas interações, até finalmente ser mensurado.
+  Utilizando o método de Monte Carlo na geração de fótons, e a partir de um dado modelo de plasma fornecendo a velocidade, densidade, intensidade do campo magnético e temperatura, o programa busca gerar um espectro da radiação emitida. Para tanto um número próximo a \textit{N} - fornecido na entrada - de fótons é gerado e para cada um sua trajetória é traçada. Nesse percurso o fóton é espalhado podendo passar por diversas interações, até finalmente ser mensurado.
 
   Depois de algumas iterações um número próximo a \textit{N} de fótons já foi gerado e rastreado, desta forma um relatório com o espectro é obtido e retornado pelo programa que finalmente termina.
 
-\section{Qual o objetivo}
-  Foram desenvolvidas várias técnicas para calcular a transferência radioativa em regiões com grandes deformações do espaço-tempo \cite{Dolence:09}, porém poucas levam em conta a toda a relatividade geral e os efeitos que podem advir da interação com objetos muito massivos, como buracos negros, ou partículas com velocidades próximas a da luz. O \textbf{grmonty} vem para levar esses efeitos em conta e aprimorar os cálculos.
+  O objetivo do \textbf{grmonty} é quantificar  o espectro eletromagnético de plasma ao redor de buracos negros, como função das condições do gás (velocidade, densidade,  intensidade do campo magnético e temperatura) e das propriedades do buraco negro, massa, momento angular e carga elétrica \cite{Dolence:09}.
 
-  %%%% rescunho
-  O programa se propõem a resolver algumas equações de geodésicas em regiões onde o espaço-tempo é muito curvo, além disso levando em consideração a eletrodinâmica em fluídos sob campos magnéticos, a magnetoidrodinâmica \cite{eletro-hidro-dynamic:42}. Essas equações são as X, Y e Z.
-
-  A equação X procura resolver ISSO dessa FORMA. sua implentação pode ser vista na função double fdex(double, double)
-
-  o grmonty foi usado para... RADIATIVE MODELS OF SGR A* FROM GRMHD SIMULATIONS, THE GALACTIC CENTER WEATHER FORECAST
-  %%%%  rascunho
 
 \section{Como o programa funciona}
 \label{sec:comofaz}
 
-  No momento de criação e rastreio dos fótons o programa faz uso da biblioteca \textbf{OpenMP} para paralelizar o desenvolvimento dos fótons, graças a esta abordagem é viável o potencial uso de todos os núcleos disponíveis na CPU da máquina. A biblioteca é utilizada para que cada fóton seja produzido e espalhado de forma independente dos outros e funcionando em paralelo, além disso todas as instruções não dependem do fóton em si, elas são as mesmas instruções para todos os fótons. Desta forma podemos caracterizar o \textbf{grmonty} como tendo uma computação SIMD.
+  No momento de criação e rastreio dos fótons o programa faz uso da biblioteca \textbf{OpenMP} para paralelizar o seu desenvolvimento. Graças a esta abordagem é viável o potencial aproveitamento de todos os núcleos disponíveis na CPU da máquina. A biblioteca é utilizada para que cada fóton seja produzido e espalhado de forma independente dos outros e funcionando em paralelo. Isso só é possível por que, as instruções não dependem de cada fóton, elas são as mesmas para todos. Assim, podemos caracterizar o \textbf{grmonty} como tendo uma computação SIMD.
 
-  ``Única Instrução Múltiplos Dados: Nesse tipo de computação podem haver múltiplos processadores, cada um operando sobre seu item de dados, mas estão todos executando a mesma instrução naquele item de dados''\citep[p.84, traduzido]{HCP:16}. A arquitetura SIMD trabalha em ressonância com o \textbf{OpenMP} uma vez que torna a paralelização muito simples de ser aplicada: não há variáveis compartilhadas, não há condicionais ou desvios de fluxo que tornem cada execução diferente uma da outra, não há necessidade de sincronização ou \textit{mutex}. Tornar o programa paralelizável é simples já que requer um uso mínimo do ferramental de programação concorrente.
+  ``Única Instrução Múltiplos Dados: Nesse tipo de computação podem existir múltiplos processadores, cada um operando sobre um item de dados, mas estão todos executando a mesma instrução naquele item de dados''\citep[p.84, traduzido]{HCP:16}. A arquitetura SIMD trabalha em ressonância com o OpenMP, uma vez que torna a paralelização factível e simples de ser aplicada.
+  
+  A parte do código que opera sobre os fótons apresenta características que facilitam a sua paralelização e portabilidade para uma arquitetura SIMD, como: não há escrita de variáveis compartilhadas entre os fótons, não há desvios de fluxo que tornem uma execução diferente das outras, não há necessidade de sincronização ou mutex (salvo no momento de incrementar o número total de fótons).
+  
+  Também existem alguns desafios à aplicação de paralelização. Os dados que representam as condições iniciais do plasma são compartilhados por todos os fótons. São variáveis globais acessadas por referência. Há condicionais que podem tornar alguma execução em particular mais longa, segurando o progresso das outras que estão na mesma unidade de processamento (caso das GPUs)
 
-
-  Toda a vez que um fóton é criado logo em seguida sua rota é traçada, a relação entre criação e cálculo de trajetória é de 1 para 1. O que é evidente ao se observar as linhas 106 a 137 do \textit{grmonty.cu}, aqui copiadas:
+  Toda a vez que um fóton é criado logo em seguida sua rota é traçada, a relação entre criação e cálculo de trajetória é de 1 para 1, ou seja, não há criação de um conjuto de $n$ fótons que depois teriam seu caminho rastreado, tornando a relação $n$ para $n$. Isto agrupa funções muito diferentes, que acessam e dependem de variavéis e funções distinjas, juntas. Acarrentando em uma maior dependencia a dados, que podem estar mais distantes indo contra o princípio da localidade, provocando uma possível perda de performance.
+  
+  Esta relação é percebida ao se observar as linhas 106 a 137 do \textit{grmonty.c}, aqui copiadas:
 
   \label{sec:main_loop}
   \begin{lstlisting}

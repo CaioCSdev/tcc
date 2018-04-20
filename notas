@@ -1,18 +1,14 @@
-- descrever o disco de acresção e o fato que emite radiação
 - dificuldade observacional
 - simulção são a melhor chance
-- computação complicada
-
-quer dizer que todos os efeitos do espaço-tempo curvo da relatividade geral de Einstein são levados em conta na propagação dos fótons
-
-- grmonty resolve uma EDO da transferencia radioativa na relatividade geral, na qual fótons
-movem-se percorrendo as geodésicas 
-
-"Tracking geodesics is a significant computational expense"
 
 - programa funciona na base do OpenMP
 - Há um acoplamento muito grande entre os dados iniciais e as operações de rastreio
-- operações de rastreio são completamente independentes entre si a menos do contador de fótons
 - variáveis que descrevem o plasma são globais e são acessadas de multiplas partes do código
+- operações de rastreio são completamente independentes entre si a menos do contador de fótons
 
-- estrategias seguida para aplicar a conversão para cuda
+- estrategias seguidas para aplicar a conversão para cuda
+  - verificaro se o acesso de cada variável era de GPU ou não. 
+  - Alocação de todas as variáveis na memória da GPU
+  - duplicação de todas as váriáveis como __device__ e __host__ vars
+  - duplicação de todas as funções como __device__ e __host__ funcs
+  - modificação no processo de acesso a metrizes [i][j] para [i * N +j]
