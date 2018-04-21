@@ -15,7 +15,7 @@
     \label{fig:cudamake}
   \end{figure}
 
-  O grafo em \ref{fig:cudamake} é um recorte do grafo completo, já que ao se executar a chamadas em cuda várias outras chamadas auxiliares, internas a arquitetura CUDA são invocadas, tal fato aumenta em muito o grafo e pode trazer um comprometimento a sua legibilidade, devido a este fato seu grafo esta suprimido aqui, mas está presente no apêndice.
+  O grafo em \ref{fig:cudamake} é um recorte do grafo completo, já que ao se executar chamadas de código CUDA várias outras auxiliares, internas a arquitetura CUDA são invocadas, tal fato aumenta em muito o grafo e pode trazer um comprometimento a sua legibilidade, devido a este fato seu grafo esta suprimido aqui, mas está presente no apêndice.
 
 \section{Comparações}
   O gráfico abaixo \ref{fig:magica} demonstra como o grmonty performa e como performa após ter parte de seu código portado para CUDA, conforme o número de fótons N cresce. Os pontos foram gerados executando-se as duas aplicações -  a primeira versão completamente na CPU e a segunda com parte do processamento na GPGPU - Os valores de N vão de 0 a 100 mil pulando de 5mil em 5mil.

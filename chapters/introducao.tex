@@ -13,36 +13,4 @@ Existem vários programas que simulam essas regiões próximas a buracos negros,
 
 O \textbf{grmonty} também apresenta algumas outras características que o tornam atraente no quesito de programa que pode ser otimizado. Como ele é relativamente pequeno (menos de 5 mil linhas), possuir a característica de ter uma arquitetura SIMD e ser feito todo em linguagem C, uma portabilidade para ser executado em GPUs é um ato factível e que pode apresentar grandes ganhos com um esforço não muito alto, aproveitando assim da paralelização massiva que as placas gráficas apresentam.
 
-Este trabalho tem como objetivo apresentar melhorias a execução do código do \textbf{grmonty}, utilizando-se do processador de placas gráficas, as GPUs, para massivamente paralelizar e distribuir a carga de trabalho pelos múltiplos núcleos de processamento destes dispositivos. Primeiramente é explicado o que é o \textbf{grmonty} e como funciona, depois os paradigmas ao qual sua execução apoia-se, caminhando para a explicação de GPUs e como contribuem para o aumento do desempenho, assim são apresentadas as otimizações executadas, chegando finalmente nos resultados alcançados e conclusões. Há ainda um capítulo de próximos passos indicando que ainda há muito espaço para mais melhorias e mais velocidade na execução.
-
-%
-% apresentar o que e o grmonty, motivações para aumentar a sua performance.
-%
-% mas como aumentar a velocidade? dada a arquitetura de funcionamento do programa uma ótima estrategia eh mover parte de seu funcionamento para um GPU, pois o programa pode sr visto como uma SIMD
-%
-%
-% Aumento de performance em cálculos de transferência radioativa ao redor de
-% buracos negros usando unidades de processamento gráfico de propósito geral
-% (GPGPU).
-% GRmonty (nome reduzido, em inglês, de Monte Carlo para Relatividade Geral) é um programa de computador que simula as características ao redor de um buraco negro afim de calcular a transferência radioativa,
-%
-%
-% Existe o programa grmonty \citep{Dolence:09},
-% o qual calcula a propagação de fótons nas proximidades de um buraco negro,
-% utilizando-se de um alto custo de processamento. Apesar desse programa estar
-% escrito em C e utilizando bibliotecas de computação em alta performance
-% (HPC sigla em inglês) como OpenMP ainda há muito espaço para melhorias em sua
-% performance. Este trabalho mira ser uma dessas melhorias.
-%
-% A estrutura de funcionamento do grmonty por ser descrita como um único cálculo
-% aplicado a uma grande quantidade de dados, no qual cada calculo é independente
-% dos demais. Dada esta descrição é possível usar um modelo de computação, única
-% instrução múltiplos dados (SIMD), com um hardware especializado a fim de
-% aumentar a performance do calculo como um todo. O emprego desta técnica neste
-% programa específico é o tema deste TCC.
-%
-% Uma monografia deve ter um capítulo inicial que é a Introdução e um
-% capítulo final que é a Conclusão. Entre esses dois capítulos poderá
-% ter uma sequência de capítulos que descrevem o trabalho em detalhes.
-% Após o capítulo de conclusão, poderá ter apêndices e ao final deverá
-% ter as referências bibliográficas.
+Este trabalho tem como objetivo apresentar melhorias a execução do código do \textbf{grmonty}, utilizando-se do processador de placas gráficas, as GPUs, para massivamente paralelizar e distribuir a carga de trabalho pelos múltiplos núcleos de processamento destes dispositivos. Primeiramente é explicado o que é o \textbf{grmonty} e como funciona, depois os paradigmas ao qual sua execução apoia-se, caminhando para a explicação de GPUs e como contribuem para o aumento do desempenho, assim são apresentadas as otimizações executadas, chegando finalmente nos resultados alcançados e conclusões.
