@@ -1,4 +1,4 @@
-\chapter{Otimizacao}
+\chapter{Otimização}
 \label{cap:otimizacao}
   O grmonty é um programa escrito em C que se utiliza fortemente da biblioteca OpenMP.
   Este trabalho é uma otimização de seu código, baseado principalmente em exportar
@@ -30,9 +30,9 @@
 
   O código do grmonty opera da forma mostrada na figura \ref{fig:grmontyGraph} seguindo o seguinte fluxo: primeiro há um passo de carregamento dos dados onde o modelo com os dados de entrada é inicializado e variáveis auxiliares são inicializadas. Nesta etapa o processamento tem seu gargalo na leitura dos dados, a maior parte do tempo lê o modelo de entrada.
 
-  Após essa inicialização o programa entra em um laço principal (como pode ser visto código mostrado na seção \ref{sec:comofaz}) onde duas funções são chamadas até que um número suficiente de fótons seja coletado, como a geração de fótons provém da técnica de monte carlo são produzidos em número aproximado, além disso muitos desses fótons criados podem não ser coletados, podendo ser perdidos e não contribuindo para o valor final.
+  Após essa inicialização o programa entra em um laço principal (como pode ser visto no exerto de código na seção \ref{sec:comofaz}) onde duas funções são chamadas até que um número suficiente de fótons seja coletado. Como a geração de fótons provém do método de Monte Carlo, são produzidos em número aproximado, além disso muitos desses fótons criados podem não ser coletados, podendo ser perdidos e não contribuindo para o valor final.
 
-  Em um determinado momento é verificado que o número de fótons coletados atingiu um valor satisfatório então um condicional desvia o fluxo para a saída do laço principal e finalmente é produzido os dados finais com o relatório da execução.
+  Em um determinado momento é verificado que o número de fótons coletados atingiu um valor satisfatório então um condicional desvia o fluxo para a saída do laço principal e finalmente são produzidos os dados finais com o relatório da execução.
 
   \begin{figure}[!h]
     \centering
@@ -41,8 +41,11 @@
     \label{fig:grmontyGraph}
   \end{figure}
 
+  O cálculo computacional mais pesado que grmonty faz, e o fator dominante em sua velocidade de execução é o rastreio de cada fóton. Este cálculo deve ser executado na ordem de milhões a centenas de milhões de vezes, onde cada vez é independente das demais. Essa arquiterura SIMD do programa pode ser explorada para um aumento em desempenho, aumentando a quatidade de execuções em paralelo que podem ocorrer. Maior paralelização maior velocidade.
+  
+  Utilizando-se o OpenMP, a paralelização ocorre a nível de CPU, na qual o número de execuções simultâneas é da ordem de algumas unidades, a no máximo dezenas. Usando-se da tecnologia CUDA, a paralelização ocorre a nível de GPU, onde a quantidade de execuções simultâneas varia entre centenas a até milhares.
 
-  Dada a arquitetura do projeto, o foco principal para aumentar a performance é tornar a paralelização feita em OpenMP para CUDA. Para isso se faz necessário que todo o código previamente distribuído pelas threads do OpenMP tornem-se Kernels, funções device, funções que executam exclusivamente na GPGPU. As principais funções do grmonty que são feitas sob o OpenMP são a \textit{make\_super\_photon} e a \textit{track\_super\_photon} que possuem as responsabilidades de gerar um photon e rastrear a sua trajetória até o final, uma delas é também a função que demanda mais processamento. Para um N razoável capaz de gerar dados consistentes e interessantes 96,95\% do tempo de execução é na função \textit{track\_super\_photon} e sendo executada na ordem de cetenas de milhares de vezes, tornando essa função a mais interessante para ser massivamente paralelizada.
+  Dada a arquitetura do projeto, o foco principal para aumentar a performance é tornar a paralelização feita em OpenMP para CUDA. Para isso se faz necessário que todo o código previamente distribuído pelas threads do OpenMP tornem-se Kernels, funções device, funções que executam exclusivamente na GPGPU. As principais funções do grmonty que são feitas sob o OpenMP são a \textit{make\_super\_photon} e a \textit{track\_super\_photon} que possuem as responsabilidades de gerar um fóton e rastrear a sua trajetória até o final, uma delas é também a função que demanda mais processamento. Para um N razoável capaz de gerar dados consistentes e interessantes 96,95\% do tempo de execução é na função \textit{track\_super\_photon} e sendo executada na ordem de centenas de milhares de vezes, tornando essa função a mais interessante para ser massivamente paralelizada.
 
 \section{Melhorias e Modificações}
   \subsection{OpenMP e Concorrência}
